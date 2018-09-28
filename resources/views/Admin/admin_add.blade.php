@@ -60,6 +60,17 @@
 									 <p class="help-block">to do...</p>
 								</div>
 
+
+								{{-- added a select option --}}
+								<div class="form-group">
+									<label>Roles</label>
+									<select class="form-control">
+										<option>Student</option>
+										<option>Teacher</option>
+										<option>Admin</option>										
+									</select>
+								</div>
+
 								<div class="form-group">
 									<label>Gender</label>
 									<div class="radio">
