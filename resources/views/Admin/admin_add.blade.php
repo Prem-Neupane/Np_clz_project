@@ -5,13 +5,13 @@
 		<div class="row">
 			<ol class="breadcrumb">
 				<li><a href="#"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
-				<li class="active">Add admin</li>
+				<li class="active">Add User</li>
 			</ol>
 		</div><!--/.row-->
 
 	    <div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">Admin Registration Form</h1>
+				<h1 class="page-header">User Registration Form</h1>
 			</div>
 	    </div><!--/.row-->
 				
@@ -19,19 +19,23 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="panel panel-default">
-					<div class="panel-heading">Add admin</div>
+					<div class="panel-heading">Add User</div>
 					<div class="panel-body">
 						<div class="col-md-12">
 							<form role="form">
 							
 								<div class="form-group">
-									<label>Name</label>
+									<label>First Name</label>
 									<input class="form-control" placeholder="Enter your name">
 								</div>			
 
+								<div class="form-group">
+									<label>Last Name</label>
+									<input class="form-control" placeholder="Enter your name">
+								</div>
 
 								<div class="form-group">									
-									<label>Userame</label>
+									<label>Username</label>
 									<input class="form-control" placeholder="Enter your Username">
 								</div>
 
@@ -53,7 +57,7 @@
 								<div class="form-group">
 									<label>Choose your profile picture</label>
 									<input type="file">
-									 <p class="help-block">it must be of format jpg/png/jpeg</p>
+									 <p class="help-block">to do...</p>
 								</div>
 
 								<div class="form-group">
