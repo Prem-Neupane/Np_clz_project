@@ -12,7 +12,7 @@
 </head>
 
 <body>
-
+	
 	<div class="container">
 		<a href="/homes">Go Back</a>	
 	</div>

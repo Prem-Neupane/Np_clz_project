@@ -39,12 +39,14 @@ class AdminController extends Controller
     	return view('Admin.admin_dashboard')->with('highlight,dashboard');
     }
 
+
+
     public function logout(){        
         Session::flush();
         return redirect('/admin')->with('flash_msg_success','Successfully logged out');        
     }
 
-    public function admin_add(){
+    public function add(){
 
          if(Session::has('adminsession')){
             //do something of session...
@@ -65,4 +67,15 @@ class AdminController extends Controller
 
         return view('Admin.admin_menu')->with('highlight','admin_menu');
     }
+
+    public function view(){
+        if(Session::has('adminsession')){
+
+        }else{
+            return redirect('/admin')->with('flash_msg_err','You must login to access');   
+        }
+
+        return view('Admin.admin_viewdata')->with('highlight','admin_viewdata');
+    }
+
 }

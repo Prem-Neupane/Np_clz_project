@@ -8,6 +8,8 @@
 <link href="{{ asset('css/backend_css/bootstrap.min.css') }}" rel="stylesheet">
 <link href="{{ asset('css/backend_css/datepicker3.css') }}" rel="stylesheet">
 <link href="{{ asset('css/backend_css/styles.css') }}" rel="stylesheet">
+<link href="{{ asset('css/backend_css/bootstrap-table.css') }}" rel="stylesheet">
+
 
 <script src="{{ asset('js/backend_js/lumino.glyphs.js') }}"></script>
 
@@ -26,6 +28,7 @@
 	<script src="{{ asset('js/backend_js/easypiechart.js') }}"></script>
 	<script src="{{ asset('js/backend_js/easypiechart-data.js') }}"></script>
 	<script src="{{ asset('js/backend_js/bootstrap-datepicker.js') }}"></script>
+	<script src="{{ asset('js/backend_js/bootstrap-table.js') }}"></script>	
 	<script>
 		$('#calendar').datepicker({
 		});
@@ -43,7 +46,7 @@
 		$(window).on('resize', function () {
 		  if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
 		})
-	</script>	
+	</script>		
 </body>
 
 </html>

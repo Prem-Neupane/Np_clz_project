@@ -54,11 +54,11 @@
 									<input type="password" class="form-control">
 								</div>																
 																
-								<div class="form-group">
+								{{-- <div class="form-group">
 									<label>Choose your profile picture</label>
 									<input type="file">
 									 <p class="help-block">to do...</p>
-								</div>
+								</div> --}}
 
 
 								{{-- added a select option --}}

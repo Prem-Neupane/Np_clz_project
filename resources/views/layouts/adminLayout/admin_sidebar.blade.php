@@ -23,11 +23,29 @@
 				<ul class="children collapse" id="sub-item-1">
 
 					<li class ="<?php  echo $highlight == 'add_admin' ? 'active' : '';  ?>">
-						<a href="{{ url('/admin/add_admin') }}"><svg class="glyph stroked plus sign"><use xlink:href="#stroked-plus-sign"/></svg> Add admin</a>
+						<a href="{{ url('/admin/add') }}"><svg class="glyph stroked plus sign"><use xlink:href="#stroked-plus-sign"/></svg> Add Users</a>
 					</li>
 
 					<li class ="<?php  echo $highlight == 'admin_menu' ? 'active' : '';  ?>">
-						<a href="{{ url('/admin/admin_menu') }}"><svg class="glyph stroked plus sign"><use xlink:href="#stroked-plus-sign"/></svg> Add menu</a>
+						<a href="{{ url('/admin/menu') }}"><svg class="glyph stroked plus sign"><use xlink:href="#stroked-plus-sign"/></svg> Add menu</a>
+					</li>
+										
+				</ul>
+			</li>
+
+
+			<li class="parent">
+				<a href="#">
+					<span data-toggle="collapse" href="#sub-item-2"><svg class="glyph stroked chevron-down"><use xlink:href="#stroked-chevron-down"></use></svg></span>Lists
+				</a>
+				<ul class="children collapse" id="sub-item-2">
+
+					<li class ="<?php  echo $highlight == 'view' ? 'active' : '';  ?>">
+						<a href="{{ url('/admin/view') }}"><svg class="glyph stroked clipboard with paper"><use xlink:href="#stroked-clipboard-with-paper"/></svg>Users</a>
+					</li>
+
+					<li class ="<?php  echo $highlight == 'nothing' ? 'active' : '';  ?>">
+						<a href="#"><svg class="glyph stroked clipboard with paper"><use xlink:href="#stroked-clipboard-with-paper"/></svg>to do</a>
 					</li>
 										
 				</ul>
@@ -36,11 +54,11 @@
 
 
 			<!--<li class ="<?php  echo $highlight == 'add_admin' ? 'active' : '';  ?>">
-				<a href="{{ url('/admin/add_admin') }}"><svg class="glyph stroked plus sign"><use xlink:href="#stroked-plus-sign"/></svg> Add admin</a>
+				<a href="{{ url('/admin/add') }}"><svg class="glyph stroked plus sign"><use xlink:href="#stroked-plus-sign"/></svg> Add admin</a>
 			</li>
 
 			<li class ="<?php  echo $highlight == 'admin_menu' ? 'active' : '';  ?>">
-				<a href="{{ url('/admin/admin_menu') }}"><svg class="glyph stroked plus sign"><use xlink:href="#stroked-plus-sign"/></svg> Add menu</a>
+				<a href="{{ url('/admin/admin') }}"><svg class="glyph stroked plus sign"><use xlink:href="#stroked-plus-sign"/></svg> Add menu</a>
 			</li>-->
 
 			<li><a href="charts.html"><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> Charts</a></li>

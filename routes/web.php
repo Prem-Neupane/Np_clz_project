@@ -1,12 +1,13 @@
 <?php
 
 Route::get('/', function () {return view('Pages.homes');});
+
 Route::get('/homes','PostsController@homes');
 Route::get('/programs','PostsController@programs');
 Route::get('/about','PostsController@about');
 Route::match(['get','post'],'/admin','AdminController@login');
 
-Route::get('/home','DashboardController@index');
+Route::get('/dashboard','DashboardController@index');
 
 //this helps to have common routes(thos who need authetication) binds 
 
@@ -21,5 +22,7 @@ Route::group(['middleware' => ['auth']],function(){
 Route::get('admin/dashboard', 'AdminController@dashboard');
 Auth::routes();
 Route::get('/logout', 'AdminController@logout');
-Route::get('/admin/add_admin','AdminController@admin_add');
-Route::get('/admin/admin_menu','AdminController@menu');
+Route::get('/admin/add','AdminController@add');
+Route::get('/admin/show','AdminController@show');
+Route::get('/admin/menu','AdminController@menu');
+Route::get('/admin/view','AdminController@view');
