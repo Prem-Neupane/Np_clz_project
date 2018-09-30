@@ -23,19 +23,11 @@
 				<ul class="children collapse" id="sub-item-1">
 
 					<li class ="<?php  echo $highlight == 'add_admin' ? 'active' : '';  ?>">
-<<<<<<< HEAD
-						<a href="{{ url('/admin/addF') }}"><svg class="glyph stroked plus sign"><use xlink:href="#stroked-plus-sign"/></svg> Add Users</a>
-					</li>
-
-					<li class ="<?php  echo $highlight == 'admin_menu' ? 'active' : '';  ?>">
-						<a href="{{ url('/admin/menuF') }}"><svg class="glyph stroked plus sign"><use xlink:href="#stroked-plus-sign"/></svg> Add menu</a>
-=======
 						<a href="{{ url('/admin/add_user') }}"><svg class="glyph stroked plus sign"><use xlink:href="#stroked-plus-sign"/></svg> Add Users</a>
 					</li>
 
 					<li class ="<?php  echo $highlight == 'admin_menu' ? 'active' : '';  ?>">
 						<a href="{{ url('/admin/add_menu') }}"><svg class="glyph stroked plus sign"><use xlink:href="#stroked-plus-sign"/></svg> Add menu</a>
->>>>>>> work-san
 					</li>
 										
 				</ul>
