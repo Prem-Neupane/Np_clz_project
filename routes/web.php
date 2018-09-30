@@ -22,7 +22,7 @@ Route::group(['middleware' => ['auth']],function(){
 Route::get('admin/dashboard', 'AdminController@dashboard');
 Auth::routes();
 Route::get('/logout', 'AdminController@logout');
-Route::get('/admin/add','AdminController@add');
+Route::match(array('GET','POST'),'/admin/addF','AdminController@register_users');
 Route::get('/admin/show','AdminController@show');
-Route::get('/admin/menu','AdminController@menu');
+Route::get('/admin/menuF','AdminController@add_menu');
 Route::get('/admin/view','AdminController@view');
