@@ -67,6 +67,26 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <label for="gender" class="col-md-4 col-form-label text-md-right">Gender</label>                                                        
+                            <div class="col-md-6">
+
+                                <div class="radio">                                    
+                                    <label>
+                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="1" checked>Male
+                                    </label>    
+                                </div>
+                                <div class="radio">                                    
+                                    <label><input type="radio" name="optionsRadios" id="optionsRadios1" value="0">Female
+                                    </label>    
+                                </div>                    
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            
+                        </div>
+
 
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>

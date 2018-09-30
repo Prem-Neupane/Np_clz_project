@@ -24,20 +24,40 @@
 						    <tr>
 						        <th data-field="id" data-align="right">ID</th>
 						        <th data-field="name">Name</th>
-						        <th data-field="price">Username</th>
-						        <th data-field="price">Email-id</th>
-						        <th data-field="price">Role</th>
-						        <th data-field="price">Gender</th>
-						        <th data-field="price">Status</th>
-						        <th data-field="price">Actions</th>
+						        <th data-field="username">Username</th>
+						        <th data-field="email">Email-id</th>
+						        <th data-field="role">Role</th>
+						        <th data-field="gender">Gender</th>
+						        <th data-field="status">Status</th>
+						        <th data-field="action">Actions</th>
 						    </tr>
 						    </thead>
+						    @foreach($users as $user)
+							    <tr>
+							    	<td>{{ $user->id }}</td>
+							    	<td>{{ $user->first_name }}</td>
+					    			<td>{{ $user->username }}</td>
+							    	<td>{{ $user->email }}</td>
+							    	<td>{{  $user->identity }}</td>
+							    	@if($user->gender == 0)
+							    		<td>Female</td>
+							    	@else <td> Male </td>
+							    	@endif
+
+							    	@if($user->active == 0)
+							    		<td>inactive</td>
+							    	@else <td> active </td>
+							    	@endif
+
+							    	<td>{{ $user->actions }}</td>				    	
+							    </tr>
+						    @endforeach
+						    
 						</table>
 					</div>
 				</div>
 			</div>			
-		</div><!--/.row-->	
-		
+		</div><!--/.row-->			
 		
 	</div><!--/.main-->
 
