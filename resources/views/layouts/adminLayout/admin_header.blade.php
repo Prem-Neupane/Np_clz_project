@@ -7,6 +7,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
+				{{-- this is the current page --}}
 				<a class="navbar-brand" href="#">Admin</a>
 				<ul class="user-menu">
 					<li class="dropdown pull-right">
