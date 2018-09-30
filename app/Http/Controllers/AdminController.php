@@ -25,6 +25,11 @@ class AdminController extends Controller
     	return view('Admin.admin_login');
     }
 
+    public function logout(){        
+        Session::flush();
+        return redirect('/admin')->with('flash_msg_success','Successfully logged out');        
+    }
+
     public function dashboard(){    	
 
         //the dashboard is protected by route group so no need of {if else block}
@@ -37,18 +42,12 @@ class AdminController extends Controller
         }
         
     	return view('Admin.admin_dashboard')->with('highlight,dashboard');
-    }
+    }    
 
-
-
-    public function logout(){        
-        Session::flush();
-        return redirect('/admin')->with('flash_msg_success','Successfully logged out');        
-    }
-
+    //to show the form to add the admin...
     public function add(){
 
-         if(Session::has('adminsession')){
+        if(Session::has('adminsession')){
             //do something of session...
         }else{
             return redirect('/admin')->with('flash_msg_err','You must login to access');
@@ -57,9 +56,10 @@ class AdminController extends Controller
         return view('Admin.admin_add')->with('highlight','admin_add');
     }
 
+    //to show the form to add the menu for navbar...
     public function menu(){
 
-         if(Session::has('adminsession')){
+        if(Session::has('adminsession')){
             //do something of session...
         }else{
             return redirect('/admin')->with('flash_msg_err','You must login to access');
@@ -68,6 +68,7 @@ class AdminController extends Controller
         return view('Admin.admin_menu')->with('highlight','admin_menu');
     }
 
+    //to view every data as a table in admin panel...
     public function view(){
         if(Session::has('adminsession')){
 
@@ -77,5 +78,4 @@ class AdminController extends Controller
 
         return view('Admin.admin_viewdata')->with('highlight','admin_viewdata');
     }
-
 }
