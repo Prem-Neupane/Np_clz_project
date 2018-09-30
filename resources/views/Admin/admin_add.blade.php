@@ -22,7 +22,7 @@
 					<div class="panel-heading">Add User</div>
 					<div class="panel-body">
 						<div class="col-md-12">
-							<form role="form">
+							<form role="form" method="Post" >
 							
 								<div class="form-group">
 									<label>First Name</label>
@@ -65,9 +65,9 @@
 								<div class="form-group">
 									<label>Roles</label>
 									<select class="form-control">
+										<option>Admin</option>							
 										<option>Student</option>
-										<option>Teacher</option>
-										<option>Admin</option>										
+										<option>Teacher</option>											
 									</select>
 								</div>
 
