@@ -37,19 +37,44 @@ class AdminController extends Controller
 
         //this is the session method to control
         if(Session::has('adminsession')){
-            //do something of session...
+            return view('Admin.admin_dashboard')->with('highlight,dashboard');
         }else{
             return redirect('/admin')->with('flash_msg_err','You must login to access');
         }
         
-    	return view('Admin.admin_dashboard')->with('highlight,dashboard');
+    	
     }    
 
     //to show the form to add the users...
-    public function register_users(){
-
+    public function register_users(Request $request){
+        
         if(Session::has('adminsession')){
-            return view('Admin.admin_add')->with('highlight','admin_add');
+            if($request->isMethod('get')){
+                return view('Admin.admin_add')->with('highlight','admin_add');
+             }else{
+                $this->validate($request,[
+                'first_name' => 'required|string|max:255',
+                'last_name' => 'required|string|max:255',
+                'username' => 'required|string|max:255|unique:users',
+                'email' => 'required|string|email|max:255|  unique:users',
+                'gender' => 'required',
+                'password' => 'required',
+                'passwordConf' => 'required',
+                'roles' => 'required'
+                ]);
+
+                $user = new User;
+                $user->first_name = $request->input('first_name');
+                $user->last_name = $request->input('last_name');
+                $user->username = $request->input('username');
+                $user->email = $request->input('email');
+                $user->password = $request->input('password');                
+                $user->gender = $request->input('gender');                
+                $user->identity = $request->input('roles');
+                $user->active = 1;
+                $user->save();
+                return redirect('/admin/view');
+            }
         }else{
             return redirect('/admin')->with('flash_msg_err','You must login to access');
         }        
@@ -59,12 +84,12 @@ class AdminController extends Controller
     public function add_menu(){
 
         if(Session::has('adminsession')){
-            //do something of session...
+            return view('Admin.admin_menu')->with('highlight','admin_menu');
         }else{
             return redirect('/admin')->with('flash_msg_err','You must login to access');
         }
 
-        return view('Admin.admin_menu')->with('highlight','admin_menu');
+        
     }
 
     //to view every data as a table in admin panel...
