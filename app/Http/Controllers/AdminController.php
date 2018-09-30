@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\User;
 use Session;
 
 class AdminController extends Controller
@@ -44,20 +45,18 @@ class AdminController extends Controller
     	return view('Admin.admin_dashboard')->with('highlight,dashboard');
     }    
 
-    //to show the form to add the admin...
-    public function add(){
+    //to show the form to add the users...
+    public function register_users(){
 
         if(Session::has('adminsession')){
-            //do something of session...
+            return view('Admin.admin_add')->with('highlight','admin_add');
         }else{
             return redirect('/admin')->with('flash_msg_err','You must login to access');
-        }
-
-        return view('Admin.admin_add')->with('highlight','admin_add');
+        }        
     }
 
     //to show the form to add the menu for navbar...
-    public function menu(){
+    public function add_menu(){
 
         if(Session::has('adminsession')){
             //do something of session...
@@ -71,11 +70,10 @@ class AdminController extends Controller
     //to view every data as a table in admin panel...
     public function view(){
         if(Session::has('adminsession')){
-
+            $users = User::all();
+            return view('Admin.admin_viewdata')->with('users',$users);
         }else{
             return redirect('/admin')->with('flash_msg_err','You must login to access');   
-        }
-
-        return view('Admin.admin_viewdata')->with('highlight','admin_viewdata');
+        }    
     }
 }
