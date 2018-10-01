@@ -95,7 +95,7 @@ class AdminController extends Controller
     //to view every data as a table in admin panel...
     public function view(){
         if(Session::has('adminsession')){
-            $users = User::all();
+            $users = User::orderBy('created_at','desc')->get();
             return view('Admin.admin_viewdata')->with('users',$users);
         }else{
             return redirect('/admin')->with('flash_msg_err','You must login to access');   
