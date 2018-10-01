@@ -32,6 +32,7 @@
 }
 
 .fixed-table-container thead th {
+    text-align: center;
     height: 0;
     padding: 0;
     margin: 0;
@@ -39,10 +40,12 @@
 }
 
 .fixed-table-container thead th:first-child {
+    text-align: center;
     border-left: none;
 }
 
 .fixed-table-container thead th .th-inner {
+    text-align: center;
     padding: 8px;
     line-height: 24px;
     vertical-align: top;
@@ -52,23 +55,28 @@
 }
 
 .fixed-table-container thead th .sortable {
+    text-align: center;
     cursor: pointer;
 }
 
 .fixed-table-container tbody td {
+    text-align: center;
     border-left: 1px solid #dddddd;
 }
 
 .fixed-table-container tbody tr:first-child td {
+    text-align: center;
     border-top: none;
 }
 
 .fixed-table-container tbody td:first-child {
+    text-align: center;
     border-left: none;
 }
 
 /* the same color with .active */
 .fixed-table-container tbody .selected td {
+    text-align: center;
     background-color: #f5f5f5;
 }
 
