@@ -60,7 +60,7 @@
 																
 								<div class="form-group">
 									<label>Re-enter Password</label>
-									<input type="password" name = 'passwordConf' class="form-control">
+									<input type="password" name = 'password_confirmation' class="form-control">
 								</div>																
 																
 								{{-- <div class="form-group">
