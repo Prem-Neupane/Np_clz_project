@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\User;
 use Session;
 
@@ -58,8 +59,8 @@ class AdminController extends Controller
                 'username' => 'required|string|max:255|unique:users',
                 'email' => 'required|string|email|max:255|  unique:users',
                 'gender' => 'required',
-                'password' => 'required',
-                'passwordConf' => 'required',
+                'password_confirmation' => 'required',
+                'password' => 'required|min:6|confirmed',                
                 'roles' => 'required'
                 ]);
 
@@ -67,8 +68,8 @@ class AdminController extends Controller
                 $user->first_name = $request->input('first_name');
                 $user->last_name = $request->input('last_name');
                 $user->username = $request->input('username');
-                $user->email = $request->input('email');
-                $user->password = $request->input('password');                
+                $user->email = $request->input('email');                                     
+                $user->password = Hash::make($request->input('password'));                
                 $user->gender = $request->input('gender');                
                 $user->identity = $request->input('roles');
                 $user->active = 1;
