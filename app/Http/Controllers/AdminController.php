@@ -99,7 +99,7 @@ class AdminController extends Controller
             $users = User::orderBy('created_at','desc')->get();
             return view('Admin.admin_viewdata')->with('users',$users);
         }else{
-            return redirect('/admin')->with('flash_msg_err','You must login to access');   
+            return redirect('/admin')->with('flash_msg_err','You must login to access');        
         }    
     }
 }
