@@ -10,14 +10,14 @@
 		
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">User List</h1>
+				<h1 class="page-header">Admin List</h1>
 			</div>
 		</div><!--/.row-->				
 		
 		<div class="row">
 			<div class="col-md-12">
 				<div class="panel panel-default">
-					<div class="panel-heading">User Table</div>
+					<div class="panel-heading">Admin Table</div>
 					<div class="panel-body">
 						<table data-toggle="table">
 						    <thead>
@@ -28,8 +28,7 @@
 						        <th data-field="email" >Email-id</th>
 						        <th data-field="role" >Role</th>
 						        <th data-field="gender" >Gender</th>
-						        <th data-field="status" >Status</th>
-						        <th data-field="action"  colspan="2">Actions</th>
+						        <th data-field="status" >Status</th>						        
 						    </tr>
 						    </thead>
 						    @foreach($users as $user)
@@ -48,20 +47,6 @@
 							    		<td ><button type="button" class = 'btn btn-danger'>inactive</button></td>
 							    	@else <td > <button class = 'btn btn-success'>active</button> </td>
 							    	@endif
-
-
-							    	<td >
-							    		<a href="/admin/update_users/{{ $user->id }}">
-								    		<button type="button" class = 'btn btn-primary'>Update
-								    		</button>
-							    		</a>
-							    	</td>
-							    	
-							    	<td >
-							    		<a href="/admin/delete/{{ $user->id }}">
-							    			<button type="button" class = 'btn btn-danger'>Delete</button>
-							    		</a>
-							    	</td>
 							    		
 							    </tr>
 						    @endforeach

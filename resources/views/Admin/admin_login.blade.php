@@ -14,7 +14,11 @@
 <body>
 	
 	<div class="container">
-		<a href="/homes">Go Back</a>	
+		<a href="/homes">
+			<div class="btn btn-default">
+				Go Back		
+			</div>
+		</a>	
 	</div>
 	
 

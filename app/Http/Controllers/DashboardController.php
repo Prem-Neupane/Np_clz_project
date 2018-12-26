@@ -28,7 +28,7 @@ class DashboardController extends Controller
     public function index()
     {
         return view('dashboard')
-                            ->with('title',"NepathyaCms")
+                            ->with('title',"Nepathya")
                             ->with('menus',Menu::where('status','=',1)->get());
     }
 }

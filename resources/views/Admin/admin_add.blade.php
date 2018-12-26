@@ -63,25 +63,25 @@
 									<input type="password" name = 'password_confirmation' class="form-control">
 								</div>																
 																
-							{{-- 	<div class="form-group">
-									<label>Choose your profile picture</label>
+								<div class="form-group">
+									<label>Choose your profile picture</label>*
 									<input type="file">
-									 <p class="help-block">to do...</p>
-								</div> --}}
+									 <p class="help-block">Do not add any picture , it doesn't works</p>
+								</div>
 
 
 								{{-- added a select option --}}
 								<div class="form-group">
-									<label>Roles</label>*
+									<label>Roles</label>
 									<select class="form-control" name = 'roles'>
 									    <option>Admin</option>							
 										<option>Student</option>
 										<option>Teacher</option>											
-									</select>
+									</select>									
 								</div>
 
 								<div class="form-group">
-									<label>Gender</label>*
+									<label>Gender</label>
 									<div class="radio">
 										<label>
 											<input type="radio" name="gender" id="optionsRadios1" value="1" checked>Male

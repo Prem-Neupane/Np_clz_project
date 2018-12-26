@@ -18,7 +18,12 @@ class MenuController extends Controller
 
     public function create()
     {
-        return view('Menu.add_menu');
+        if( Session::has('adminsession') ){
+            return view('Menu.add_menu');
+        }else{
+            
+            return redirect('/admin')->with('flash_msg_err','You must login to access');
+        }
     }
 
     public function store(Request $request)

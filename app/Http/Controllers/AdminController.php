@@ -20,9 +20,10 @@ class AdminController extends Controller
                 'email'=> $data['email'],
                 'password'=>$data['password'],
                 'identity' => 'admin'
-            ])){
+            ])){                
 
-                Session::put('adminsession',$data['email']);                            
+                $user = User::where('email','=',$data['email'])->get();                
+                Session::put('adminsession', $user[0]->username);                   
 
 	    	  return redirect('/admin/dashboard');    
 	    	}else{
@@ -38,11 +39,9 @@ class AdminController extends Controller
         return redirect('/admin')->with('flash_msg_success','Successfully logged out');        
     }
 
-    public function dashboard(){    	
+    public function dashboard(){    	        
 
-        //if the dashboard is protected by route group so no need of session {if else block}
-
-        //this is the session method to control
+        //this is the session method to control access
 
         if(Session::has('adminsession')){
             return view('Admin.admin_dashboard')->with('highlight,dashboard');
@@ -55,8 +54,9 @@ class AdminController extends Controller
     public function register_users(Request $request){
         
         if(Session::has('adminsession')){
+
             if($request->isMethod('get')){
-                return view('Admin.admin_add')->with('highlight','admin_add');
+                return view('Admin.admin_add');
              }else{
                 $this->validate($request,[
                 'first_name' => 'required|string|max:255',
@@ -67,19 +67,22 @@ class AdminController extends Controller
                 'password_confirmation' => 'required',
                 'password' => 'required|min:6|confirmed',                
                 'roles' => 'required'
-                ]);
+                ]);                
 
                 $user = new User;
                 $user->first_name = $request->input('first_name');
                 $user->last_name = $request->input('last_name');
                 $user->username = $request->input('username');
-                $user->email = $request->input('email');                                     
-                $user->password = Hash::make($request->input('password'));                
+                $user->email = $request->input('email');                                    
+                $user->password = Hash::make($request->input('password'));
                 $user->gender = $request->input('gender');                
                 $user->identity = $request->input('roles');
-                $user->active = 0;
+                $user->active = 1;                          //added by admin so already active...
                 $user->save();
-                return redirect('/admin/view');
+                
+                if($request->input('roles') == 'admin')
+                     return redirect('/admin/view2');
+                else return redirect('/admin/view2');
             }
         }else{
             return redirect('/admin')->with('flash_msg_err','You must login to access');
@@ -88,6 +91,8 @@ class AdminController extends Controller
 
 
     //problem on updating the users
+    //to do : update with and without password...
+
      public function update_users(Request $request, $id){
         
         if(Session::has('adminsession')){
@@ -111,7 +116,7 @@ class AdminController extends Controller
                 'active' => 'required'
                 ]);
 
-                $user = User::find($id);
+                $user = User::find($id);                
                 $user->first_name = $request->input('first_name');
                 $user->last_name = $request->input('last_name');
                 $user->username = $request->input('username');
@@ -119,7 +124,7 @@ class AdminController extends Controller
                 $user->password = Hash::make($request->input('password'));                
                 $user->gender = $request->input('gender');                
                 $user->identity = $request->input('roles');
-                $user->active = 1;
+                $user->active = $request->input('active');
                 $user->save();
                 return redirect('/admin/view');
             }
@@ -128,39 +133,38 @@ class AdminController extends Controller
         }        
     }
 
-    //to view every data as a table in admin panel...
+    //to view users as a table in admin panel...
     public function view(){
         if(Session::has('adminsession')){
-            $users = User::orderBy('created_at','desc')->get();
+            $users = User::where('identity','!=','admin')->get();
+
             return view('Admin.admin_viewusers')->with('users',$users);
+        }else{
+            return redirect('/admin')->with('flash_msg_err','You must login to access');        
+        }    
+    }   
+
+
+    //to view admins as a table in admin panel...
+    public function view_admins(){
+        if(Session::has('adminsession')){
+            $users = User::where('identity','=','admin')->get();            
+
+            return view('Admin.admin_viewadmins')->with('users',$users);
         }else{
             return redirect('/admin')->with('flash_msg_err','You must login to access');        
         }    
     }
 
-    //to show the form to add the menu for navbar...
-    public function add_menu(Request $request){
+    //remove the users...
+    public function delete($id){
 
         if(Session::has('adminsession')){
-            if($request->isMethod('get')){     
-                echo "hello world";            
-                return view('Admin.admin_menu')->with('highlight','admin_menu');
-            }else{
-                $this->validate($request,[
-                'title' => 'required|string|max:255',
-                'active' => 'required'
-                ]);
-
-                //$menu = new Menu;
-                //$menu->title = $request->input('title');
-                //$menu->active = $request->input('active');                
-                //$menu->save();               
-                echo $request->input('title') + $request->input('status');
-                //return redirect('/admin/view');
-
-            }
+            $user = User::find($id);            
+            $user->delete();
+            return redirect('/admin/view');
         }else{
-            return redirect('/admin')->with('flash_msg_err','You must login to access');
-        }    
+            return redirect('/admin')->with('flash_msg_err','You must login to access');        
+        }
     }
 }

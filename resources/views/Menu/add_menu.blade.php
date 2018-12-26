@@ -41,12 +41,6 @@
 										<label>Slug</label>
 										<input class="form-control" name="slug" placeholder="Enter the title for the menu">
 									</div>		
-
-
-									{{-- <div class="form-group">									
-										<label>submenu</label>
-										<input class="form-control" placeholder="">
-									</div> --}}								
 																								
 									<div class="form-group">
 										<label>Status</label>

@@ -4,15 +4,9 @@
 				<input type="text" class="form-control" placeholder="Search">
 			</div>
 		</form>
-		<ul class="nav menu">
+		<ul class="nav menu">			
 
-			<?php 
-				$url = explode('/',url()->current());
-				$highlight = $url[4];				
-			?>
-
-
-			<li class=" <?php  echo $highlight == 'dashboard' ? 'active' : '';  ?> ">
+			<li class="active">
 				<a href="{{ url('/admin/dashboard') }}"><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-dashboard-dial"></use></svg> Dashboard</a>
 			</li>
 
@@ -22,11 +16,11 @@
 				</a>
 				<ul class="children collapse" id="sub-item-1">
 
-					<li class ="<?php  echo $highlight == 'add_admin' ? 'active' : '';  ?>">
+					<li>
 						<a href="{{ url('/admin/add_user') }}"><svg class="glyph stroked plus sign"><use xlink:href="#stroked-plus-sign"/></svg> Add Users</a>
 					</li>
 
-					<li class ="<?php  echo $highlight == 'admin_menu' ? 'active' : '';  ?>">
+					<li>
 						<a href="{{ url('/menus/create') }}"><svg class="glyph stroked plus sign"><use xlink:href="#stroked-plus-sign"/></svg> Add menu</a>
 					</li>
 										
@@ -40,27 +34,19 @@
 				</a>
 				<ul class="children collapse" id="sub-item-2">
 
-					<li class ="<?php  echo $highlight == 'view' ? 'active' : '';  ?>">
+					<li>
 						<a href="{{ url('/admin/view') }}"><svg class="glyph stroked clipboard with paper"><use xlink:href="#stroked-clipboard-with-paper"/></svg>Users</a>
 					</li>
 
-					<li class ="<?php  echo $highlight == 'nothing' ? 'active' : '';  ?>">
-						<a href="#"><svg class="glyph stroked clipboard with paper"><use xlink:href="#stroked-clipboard-with-paper"/></svg>to do</a>
+					<li>
+						<a href="{{ url('/admin/view2') }}"><svg class="glyph stroked clipboard with paper"><use xlink:href="#stroked-clipboard-with-paper"/></svg>Admins</a>
 					</li>
 										
 				</ul>
 			</li>
+			
 
-
-
-			<!--<li class ="<?php  echo $highlight == 'add_admin' ? 'active' : '';  ?>">
-				<a href="{{ url('/admin/add') }}"><svg class="glyph stroked plus sign"><use xlink:href="#stroked-plus-sign"/></svg> Add admin</a>
-			</li>
-
-			<li class ="<?php  echo $highlight == 'admin_menu' ? 'active' : '';  ?>">
-				<a href="{{ url('/admin/admin') }}"><svg class="glyph stroked plus sign"><use xlink:href="#stroked-plus-sign"/></svg> Add menu</a>
-			</li>-->
-
+			{{-- unused lists below... --}}
 			<li><a href="charts.html"><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> Charts</a></li>
 			<li><a href="tables.html"><svg class="glyph stroked table"><use xlink:href="#stroked-table"></use></svg> Tables</a></li>
 			<li><a href="forms.html"><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"></use></svg> Forms</a></li>
