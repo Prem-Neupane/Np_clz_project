@@ -27,7 +27,7 @@
 					</li>
 
 					<li class ="<?php  echo $highlight == 'admin_menu' ? 'active' : '';  ?>">
-						<a href="{{ url('/admin/add_menu') }}"><svg class="glyph stroked plus sign"><use xlink:href="#stroked-plus-sign"/></svg> Add menu</a>
+						<a href="{{ url('/menus/create') }}"><svg class="glyph stroked plus sign"><use xlink:href="#stroked-plus-sign"/></svg> Add menu</a>
 					</li>
 										
 				</ul>

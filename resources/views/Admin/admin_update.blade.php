@@ -5,7 +5,7 @@
 		<div class="row">
 			<ol class="breadcrumb">
 				<li><a href="#"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
-				<li class="active">Add User</li>
+				<li class="active">Update Users</li>
 			</ol>
 		</div><!--/.row-->
 
@@ -29,28 +29,31 @@
 						<div class="col-md-12">							
 							
  							<form role="form" method="post" action = 
-							'{{ url('/admin/add_user') }}' >
+							'{{ url('/admin/update_users/$users->id') }}' >
+
+							{{-- error on updating the data...check the url above --}}
 
 							{{ csrf_field() }}
 							
 								<div class="form-group">
 									<label>First Name</label>
-									<input class="form-control" name = 'first_name' placeholder="Enter your first name">
+									<input class="form-control" value="{{ $users->first_name }}" name = 'first_name' placeholder="Enter your first name">
 								</div>			
 
 								<div class="form-group">
 									<label>Last Name</label>
-									<input class="form-control" name = 'last_name' placeholder="Enter your last name">
+									<input class="form-control" value="{{ $users->last_name }}" name = 'last_name' placeholder="Enter your last name">
 								</div>
 
 								<div class="form-group">									
 									<label>Username</label>
-									<input class="form-control" name = 'username' placeholder="Enter your Username">
+									<input class="form-control" value="{{ $users->username }}" name = 'username' placeholder="Enter your Username">
 								</div>
 
 								<div class="form-group">									
 									<label>E-mail</label>
-									<input class="form-control" name = 'email'placeholder="Enter your Email">
+									<input class="form-control" value="{{ $users->email}}"
+									name = 'email'placeholder="Enter your Email">
 								</div>
 
 								<div class="form-group">
@@ -62,19 +65,14 @@
 									<label>Re-enter Password</label>
 									<input type="password" name = 'password_confirmation' class="form-control">
 								</div>																
-																
-							{{-- 	<div class="form-group">
-									<label>Choose your profile picture</label>
-									<input type="file">
-									 <p class="help-block">to do...</p>
-								</div> --}}
-
-
-								{{-- added a select option --}}
+																				
+								{{-- need to check the previous roles... --}}
 								<div class="form-group">
 									<label>Roles</label>
-									<select class="form-control" name = 'roles'>
-									    <option>Admin</option>							
+									<select class="form-control" value={{ $users->identity }} name = 'roles'>
+										
+
+									   	<option> Admin </option>						
 										<option>Student</option>
 										<option>Teacher</option>											
 									</select>
@@ -90,6 +88,20 @@
 									<div class="radio">
 										<label>
 											<input type="radio" name="gender" id="optionsRadios2" value="0">Female
+										</label>
+									</div>									
+								</div>
+
+								<div class="form-group">
+									<label>Active</label>
+									<div class="radio">
+										<label>
+											<input type="radio" name="active" id="optionsRadios1" value="0" checked>Inactive
+										</label>
+									</div>
+									<div class="radio">
+										<label>
+											<input type="radio" name="active" id="optionsRadios2" value="1">Active
 										</label>
 									</div>									
 								</div>

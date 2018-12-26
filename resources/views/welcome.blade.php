@@ -10,6 +10,11 @@
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
 
+        
+            @foreach($menus as $menu)
+        <h1> {{ $menu->title }}</h1>
+            @endforeach        
+
         <!-- Styles -->
         <style>
             html, body {

@@ -50,7 +50,13 @@
 							    	@endif
 
 
-							    	<td ><button type="button" class = 'btn btn-primary'>Update</button></td>
+							    	<td >
+							    		<a href="/admin/update_users/{{ $user->id }}">
+								    		<button type="button" class = 'btn btn-primary'>Update
+								    		</button>
+							    		</a>
+							    	</td>
+							    	
 							    	<td ><button type="button" class = 'btn btn-danger'>Delete</button></td>
 							    		
 							    </tr>

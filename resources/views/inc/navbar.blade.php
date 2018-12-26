@@ -8,7 +8,18 @@
       <div class="collapse navbar-collapse" id="navbarsExample03">
         <!-- left side of navbar -->
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
+
+            
+            
+          @if(isset($menus))
+              @foreach($menus as $menu)
+                <li class="nav-item">
+                      <a class="nav-link" href="/homes">{{ $menu->title }}</a>
+                </li>
+              @endforeach
+          @endif
+
+          {{-- <li class="nav-item">
             <a class="nav-link" href="/homes">Home</a>
           </li>
           <li class="nav-item">
@@ -16,7 +27,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/about">About us</a>
-          </li>        
+          </li>        --}} 
         </ul>
 
           <!-- right side of navbar -->
