@@ -11,20 +11,20 @@
 
 	    <div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header">User Registration Form</h1>
+				<h1 class="page-header">User Form</h1>
 			</div>
 	    </div><!--/.row-->
 				
 		@if(count($errors) > 0)
 		  @foreach($errors->all() as $error)
-		  <div class="alert alert-danger"> {{ $error }}</div>
+		  	<div class="alert alert-danger"> {{ $error }}</div>
 		  @endforeach
-		  @endif
+		@endif
 
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="panel panel-default">
-					<div class="panel-heading">Add User</div>
+					<div class="panel-heading">Update User</div>
 					<div class="panel-body">
 						<div class="col-md-12">							
 							
@@ -62,24 +62,24 @@
 								</div>
 																
 								<div class="form-group">
-									<label>Re-enter Password</label>
+									<label>Confirm Password</label>*
 									<input type="password" name = 'password_confirmation' class="form-control">
 								</div>																
 																				
-								{{-- need to check the previous roles... --}}
+								{{-- need to display the previous roles and genders... --}}
 								<div class="form-group">
-									<label>Roles</label>
+									<label>Roles</label>*
 									<select class="form-control" value={{ $users->identity }} name = 'roles'>
 										
 
-									   	<option> Admin </option>						
+									   	<option>Admin </option>						
 										<option>Student</option>
 										<option>Teacher</option>											
 									</select>
 								</div>
 
 								<div class="form-group">
-									<label>Gender</label>
+									<label>Gender</label>*
 									<div class="radio">
 										<label>
 											<input type="radio" name="gender" id="optionsRadios1" value="1" checked>Male

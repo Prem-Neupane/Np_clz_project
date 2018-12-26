@@ -9,25 +9,19 @@
         <!-- left side of navbar -->
         <ul class="navbar-nav mr-auto">
 
-            
+          <li class="nav-item">
+            <a class="nav-link" href="/homes">Home</a>
+          </li>
             
           @if(isset($menus))
               @foreach($menus as $menu)
                 <li class="nav-item">
-                      <a class="nav-link" href="/homes">{{ $menu->title }}</a>
+                      <a class="nav-link" href="/homes">{{ $menu->title }}</a>   
+                      {{-- uses data form database to provide the link --}}
                 </li>
               @endforeach
           @endif
-
-          {{-- <li class="nav-item">
-            <a class="nav-link" href="/homes">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/programs">Programs</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/about">About us</a>
-          </li>        --}} 
+        
         </ul>
 
           <!-- right side of navbar -->

@@ -1,12 +1,8 @@
 <?php
 
-Route::get('/','FrontendController@index');
-
 //simple postscontrollers...
 Route::get('/homes','PostsController@homes');
-Route::get('/programs','PostsController@programs');
-Route::get('/about','PostsController@about');
-
+Route::get('/','PostsController@homes');
 
 //login form for admin...
 Route::match(['get','post'],'/admin','AdminController@login');
@@ -38,10 +34,6 @@ Route::get('/logout', 'AdminController@logout');
 
 //form to add users...
 Route::match(['get','post'],'/admin/add_user','AdminController@register_users');
-
-//form to add menus... //will be removed...
-Route::match(['get','post'],'/admin/add_menu','AdminController@add_menu');
-
 
 //to update users...(@problem)
 Route::get('/admin/update_users/{id}','AdminController@update_users');

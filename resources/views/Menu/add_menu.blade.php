@@ -30,15 +30,17 @@
 
 								<form action="{{route('menu.store')}}" method="post">
 
-								{{-- <form role="form" method="post" action = 
-									'{{ url('/admin/add_menu') }}'>
- --}}
 									{{ csrf_field() }}
 								
 									<div class="form-group">
-										<label>menu</label>
+										<label>Title</label>
 										<input class="form-control" name="title" placeholder="Enter the title for the menu">
-									</div>			
+									</div>	
+
+									<div class="form-group">
+										<label>Slug</label>
+										<input class="form-control" name="slug" placeholder="Enter the title for the menu">
+									</div>		
 
 
 									{{-- <div class="form-group">									

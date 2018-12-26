@@ -28,12 +28,14 @@ class MenuController extends Controller
 
             $this->validate($request,[
             'title' => 'required|string|max:255',
+            'slug' => 'required|string|max:255',
             'status' => 'required',                
             ]);
 
             $menu = new Menu;
             $menu->title = $request->input('title');
             $menu->status = $request->input('status');
+            $menu->slug = $request->input('slug');
             $menu->save();
 
             return redirect('/menus/create')->with('success','menu added');

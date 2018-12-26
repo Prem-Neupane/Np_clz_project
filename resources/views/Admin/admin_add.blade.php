@@ -17,9 +17,9 @@
 				
 		@if(count($errors) > 0)
 		  @foreach($errors->all() as $error)
-		  <div class="alert alert-danger"> {{ $error }}</div>
+		  	<div class="alert alert-danger"> {{ $error }}</div>
 		  @endforeach
-		  @endif
+		@endif
 
 		<div class="row">
 			<div class="col-lg-12">
@@ -59,7 +59,7 @@
 								</div>
 																
 								<div class="form-group">
-									<label>Re-enter Password</label>
+									<label>Confirm Password</label>*
 									<input type="password" name = 'password_confirmation' class="form-control">
 								</div>																
 																
@@ -72,7 +72,7 @@
 
 								{{-- added a select option --}}
 								<div class="form-group">
-									<label>Roles</label>
+									<label>Roles</label>*
 									<select class="form-control" name = 'roles'>
 									    <option>Admin</option>							
 										<option>Student</option>
@@ -81,7 +81,7 @@
 								</div>
 
 								<div class="form-group">
-									<label>Gender</label>
+									<label>Gender</label>*
 									<div class="radio">
 										<label>
 											<input type="radio" name="gender" id="optionsRadios1" value="1" checked>Male
