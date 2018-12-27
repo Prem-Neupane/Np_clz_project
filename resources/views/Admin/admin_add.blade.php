@@ -59,7 +59,7 @@
 								</div>
 																
 								<div class="form-group">
-									<label>Confirm Password</label>*
+									<label>Confirm Password</label>
 									<input type="password" name = 'password_confirmation' class="form-control">
 								</div>																
 																
@@ -68,9 +68,7 @@
 									<input type="file">
 									 <p class="help-block">Do not add any picture , it doesn't works</p>
 								</div>
-
-
-								{{-- added a select option --}}
+								
 								<div class="form-group">
 									<label>Roles</label>
 									<select class="form-control" name = 'roles'>

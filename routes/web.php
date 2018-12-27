@@ -33,7 +33,7 @@ Route::get('/admin/view2','AdminController@view_admins');
 Route::get('/logout', 'AdminController@logout');
 
 //to delete the users...(@problem)
-Route::get('/admin/delete/{$id}','AdminController@delete');
+Route::get('/admin/delete/{id}','AdminController@delete');
 
 //to update users...(@problem)
 Route::get('/admin/update_users/{id}','AdminController@update_users');

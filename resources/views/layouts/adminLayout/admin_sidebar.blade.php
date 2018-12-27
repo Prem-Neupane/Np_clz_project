@@ -4,6 +4,7 @@
 				<input type="text" class="form-control" placeholder="Search">
 			</div>
 		</form>
+		
 		<ul class="nav menu">			
 
 			<li class="active">

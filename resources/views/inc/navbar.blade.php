@@ -17,7 +17,7 @@
               @foreach($menus as $menu)
                 <li class="nav-item">
                       <a class="nav-link" href="/homes">{{ $menu->title }}</a>   
-                      {{-- uses data form database to provide the link --}}
+                      {{-- use data form database to provide the link --}}
                 </li>
               @endforeach
           @endif

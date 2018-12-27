@@ -62,7 +62,7 @@
 								</div>
 																
 								<div class="form-group">
-									<label>Confirm Password</label>*
+									<label>Confirm Password</label>
 									<input type="password" name = 'password_confirmation' class="form-control">
 								</div>																
 																				
