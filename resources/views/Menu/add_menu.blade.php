@@ -31,12 +31,12 @@
 							{{ csrf_field() }}				
 							<div class="form-group">
 								<label>Title</label>
-								<input class="form-control" name="title" placeholder="Enter the title for the menu">
+								<input class="form-control" name="title" placeholder="Title">
 							</div>	
 
 							<div class="form-group">
 								<label>Slug</label>
-								<input class="form-control" name="slug" placeholder="Enter the title for the menu">
+								<input class="form-control" name="slug" placeholder="Slug">
 							</div>		
 																						
 							<div class="form-group">
@@ -71,12 +71,12 @@
 						
 							<div class="form-group">
 								<label>Title</label>
-								<input class="form-control" name="title" placeholder="Enter the title for the submenu">
+								<input class="form-control" name="title" placeholder="Title">
 							</div>	
 
 							<div class="form-group">
 								<label>Slug</label>
-								<input class="form-control" name="slug" placeholder="Enter the slug for the menu">
+								<input class="form-control" name="slug" placeholder="Slug">
 							</div>
 
 							<div class="form-group">
@@ -84,9 +84,7 @@
 								<select class="form-control" name = 'parent_menu_id'>
 								    @foreach($menus as $menu)
 								    	<option value="{{ $menu->id }}">
-								    		<?php
-								    	        echo $menu->id.' '.$menu->title;
-								    	    ?>
+								    		{{ $menu->title }}
 								    	</option>
 								    @endforeach										
 								</select>									
