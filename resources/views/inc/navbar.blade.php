@@ -7,32 +7,33 @@
 
       <div class="collapse navbar-collapse" id="navbarsExample03">
         <!-- left side of navbar -->
+
         <ul class="navbar-nav mr-auto">
 
           <li class="nav-item">
             <a class="nav-link" href="/homes">Home</a>
-          </li>
+          </li>           
             
-          @if(isset($menus))
               @foreach($menus as $menu)
-                <li class="nav-item">
-                      <a class="nav-link" href="/homes">{{ $menu->title }}</a>   
-                      {{-- use data form database to provide the link --}}                     
-                </li>
-              @endforeach
-          @endif
 
-          <div class="dropdown">
-    <button class="dropbtn">Dropdown 
-      <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="dropdown-content">
-      <a href="#">Link 1</a>
-      <a href="#">Link 2</a>
-      <a href="#">Link 3</a>
-    </div>
-  </div> 
-        
+                    {{-- @if($menu->has_submenu == 1) --}}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="https://example.com" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              {{ $menu->title }}
+                            </a>
+
+                            <div class="dropdown-menu" aria-labelledby="dropdown03">
+                               @foreach($submenus as $submenu)
+                                 @if($submenu->parent_id == $menu->id)
+                                        <a class="dropdown-item" href="#">{{ $submenu->title }}</a>
+                                 @endif
+                               @endforeach                                   
+                            </div>
+                        </li>
+                    {{-- @else --}}
+                        {{-- <a class="nav-link" href="/homes">{{ $menu->title }}</a> --}}
+                    {{-- @endif                  --}}
+                @endforeach                
         </ul>
 
           <!-- right side of navbar -->
