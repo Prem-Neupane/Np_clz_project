@@ -94,13 +94,12 @@ class AdminController extends Controller
     //to do : update with and without password...
 
      public function update_users(Request $request, $id){
-        
-        $id_ = $id;
+                
         if(Session::has('adminsession')){
 
             if($request->isMethod('get')){
 
-                $user = User::find($id_);
+                $user = User::find($id);
                 return view('Admin.admin_update')->with('users',$user);
 
              }else{
@@ -111,13 +110,11 @@ class AdminController extends Controller
                 'username' => 'required|string|max:255',
                 'email' => 'required|string|email|max:255',
                 'gender' => 'required',
-                'password_confirmation' => 'required',
-                'password' => 'required|min:6|confirmed',                
                 'roles' => 'required',
                 'active' => 'required'
                 ]);
 
-                $user = User::find($id_);                
+                $user = User::find($id);                
                 $user->first_name = $request->input('first_name');
                 $user->last_name = $request->input('last_name');
                 $user->username = $request->input('username');
