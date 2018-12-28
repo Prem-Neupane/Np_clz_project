@@ -48,3 +48,8 @@ Route::post('/menus/store',[
         'uses'=>'MenuController@store',
         'as'=>'menu.store'
     ]);
+
+Route::post('/submenus/store',[
+        'uses'=>'SubmenuController@store',
+        'as'=>'submenu.store'
+    ]);

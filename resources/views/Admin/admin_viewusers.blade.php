@@ -53,7 +53,7 @@
 							    	<td >
 							    		<a href="/admin/update_users/{{ $user->id }}">
 								    		<button type="button" class = 'btn btn-primary'>Update
-								    		</button>
+								    		</button>								    		
 							    		</a>
 							    	</td>
 							    	

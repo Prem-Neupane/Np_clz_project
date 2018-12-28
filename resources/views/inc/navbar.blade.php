@@ -17,10 +17,21 @@
               @foreach($menus as $menu)
                 <li class="nav-item">
                       <a class="nav-link" href="/homes">{{ $menu->title }}</a>   
-                      {{-- use data form database to provide the link --}}
+                      {{-- use data form database to provide the link --}}                     
                 </li>
               @endforeach
           @endif
+
+          <div class="dropdown">
+    <button class="dropbtn">Dropdown 
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="#">Link 1</a>
+      <a href="#">Link 2</a>
+      <a href="#">Link 3</a>
+    </div>
+  </div> 
         
         </ul>
 

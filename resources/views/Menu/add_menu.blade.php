@@ -60,6 +60,63 @@
 								</div>
 							
 							</form>
+
+						</div>
+
+						<div class="row">
+
+				<div class="col-lg-12">
+					<div class="panel panel-default">
+						<div class="panel-heading">Add sub-menu</div>
+						<div class="panel-body">
+							<div class="col-md-12">
+
+								<form action="{{route('submenu.store')}}" method="post">
+
+									{{ csrf_field() }}
+								
+									<div class="form-group">
+										<label>Title</label>
+										<input class="form-control" name="title" placeholder="Enter the title for the submenu">
+									</div>	
+
+									<div class="form-group">
+										<label>Slug</label>
+										<input class="form-control" name="slug" placeholder="Enter the slug for the menu">
+									</div>
+
+									<div class="form-group">
+									<label>Choose category</label>
+									<select class="form-control" name = 'parent_menu_id'>
+									    @foreach($menus as $menu)
+									    	<option value="{{ $menu->id }}">
+									    		<?php
+									    	        echo $menu->id.' '.$menu->title;
+									    	    ?>
+									    	</option>
+									    @endforeach										
+									</select>									
+								</div>		
+																								
+									<div class="form-group">
+										<label>Status</label>
+										<div class="radio">
+											<label>
+												<input type="radio" name="status" id="optionsRadios1" value="1" checked>Active
+											</label>
+										</div>
+										<div class="radio">
+											<label>
+												<input type="radio" name="status" id="optionsRadios2" value="0">Inactive
+											</label>
+										</div>									
+									</div>
+
+									<button type="submit" class="btn btn-primary">Submit</button>																				
+								</div>
+							
+							</form>
+							
 						</div>
 					</div>
 				</div><!-- /.col-->

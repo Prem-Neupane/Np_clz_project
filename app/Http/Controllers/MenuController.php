@@ -19,10 +19,12 @@ class MenuController extends Controller
     public function create()
     {
         if( Session::has('adminsession') ){
-            return view('Menu.add_menu');
+            return view('Menu.add_menu')
+                ->with('menus',Menu::all());
         }else{
             
-            return redirect('/admin')->with('flash_msg_err','You must login to access');
+            return redirect('/admin')
+                    ->with('flash_msg_err','You must login to access');                    
         }
     }
 
@@ -35,7 +37,7 @@ class MenuController extends Controller
             'title' => 'required|string|max:255',
             'slug' => 'required|string|max:255',
             'status' => 'required',                
-            ]);
+            ]);            
 
             $menu = new Menu;
             $menu->title = $request->input('title');
