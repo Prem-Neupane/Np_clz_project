@@ -29,7 +29,8 @@ class DashboardController extends Controller
     public function index()
     {
         return view('dashboard')
-                           ->with('menus',Menu::where('status','=',1)->get())
+                            ->with('title',"Nepathya")
+                            ->with('menus',Menu::where('status','=',1)->get())
                             ->with('submenus',SubMenu::where('status','=',1)->get());
     }
 }
