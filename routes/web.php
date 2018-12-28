@@ -38,6 +38,8 @@ Route::get('/admin/delete/{id}','AdminController@delete');
 //to update users...(@problem)
 Route::get('/admin/update_users/{id}','AdminController@update_users');
 
+Route::get('/admin/toogle/{id}','AdminController@toogle_status');
+
 //form to add users...
 Route::match(['get','post'],'/admin/add_user','AdminController@register_users');
 
