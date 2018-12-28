@@ -45,8 +45,17 @@
 							    	@endif
 
 							    	@if($user->active == 0)
-							    		<td ><button type="button" class = 'btn btn-danger'>inactive</button></td>
-							    	@else <td > <button class = 'btn btn-success'>active</button> </td>
+							    		<td >
+							    			<a href="/admin/toogle/{{ $user->id }}">
+							    			<button type="button" class = 'btn btn-danger'>inactive</button>
+							    			</a>
+							    		</td>
+							    	@else 
+							    		<td >
+							    			<a href="/admin/toogle/{{ $user->id }}">
+							    		 	<button class = 'btn btn-success'>active</button> 
+							    		 	</a>
+							    		 </td>
 							    	@endif
 
 
