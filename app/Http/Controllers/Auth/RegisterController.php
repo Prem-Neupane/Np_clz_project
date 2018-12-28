@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\SubMenu;
+use App\Menu;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -38,6 +40,15 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+    }
+
+    public function showRegistrationForm()
+    {        
+
+        return view('auth.register')
+                            ->with('title',"Nepathya")
+                            ->with('menus',Menu::where('status','=',1)->get())
+                            ->with('submenus',SubMenu::where('status','=',1)->get());;
     }
 
     /**
