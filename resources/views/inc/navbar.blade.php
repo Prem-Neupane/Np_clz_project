@@ -25,7 +25,7 @@
                             <div class="dropdown-menu" aria-labelledby="dropdown03">
                                @foreach($submenus as $submenu)
                                  @if($submenu->parent_id == $menu->id)
-                                        <a class="dropdown-item" href="#">{{ $submenu->title }}</a>
+                                        <a class="dropdown-item" href="{{ $menu->slug }}/{{ $submenu->slug }}">{{ $submenu->title }}</a>
                                  @endif
                                @endforeach                                   
                             </div>

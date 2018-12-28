@@ -80,7 +80,7 @@ class AdminController extends Controller
                 $user->active = 1;                          //added by admin so already active...
                 $user->save();
 
-                if($request->input('roles') == 'admin')
+                if($request->input('roles') == 'Admin')
                      return redirect('/admin/view2');   //view list of admins after adding admin
                 else return redirect('/admin/view');    //else if users are added, view list of users                
                 
