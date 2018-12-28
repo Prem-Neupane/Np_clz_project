@@ -167,4 +167,19 @@ class AdminController extends Controller
             return redirect('/admin')->with('flash_msg_err','You must login to access');        
         }
     }
+
+    public function toogle_status($id){
+
+        if(Session::has('adminsession')){
+            
+            $user = User::find($id);
+            $user->active =  1 - $user->active;           
+            $user->save();
+
+            if($user->identity == 'admin') return redirect('/admin/view2'); 
+            else return redirect('/admin/view');
+        }else{
+            return redirect('/admin')->with('flash_msg_err','You must login to access');        
+        }
+    }
 }
