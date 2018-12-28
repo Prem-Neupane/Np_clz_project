@@ -95,11 +95,12 @@ class AdminController extends Controller
 
      public function update_users(Request $request, $id){
         
+        $id_ = $id;
         if(Session::has('adminsession')){
 
             if($request->isMethod('get')){
 
-                $user = User::find($id);
+                $user = User::find($id_);
                 return view('Admin.admin_update')->with('users',$user);
 
              }else{
@@ -107,8 +108,8 @@ class AdminController extends Controller
                 $this->validate($request,[
                 'first_name' => 'required|string|max:255',
                 'last_name' => 'required|string|max:255',
-                'username' => 'required|string|max:255|unique:users',
-                'email' => 'required|string|email|max:255|  unique:users',
+                'username' => 'required|string|max:255',
+                'email' => 'required|string|email|max:255',
                 'gender' => 'required',
                 'password_confirmation' => 'required',
                 'password' => 'required|min:6|confirmed',                
@@ -116,7 +117,7 @@ class AdminController extends Controller
                 'active' => 'required'
                 ]);
 
-                $user = User::find($id);                
+                $user = User::find($id_);                
                 $user->first_name = $request->input('first_name');
                 $user->last_name = $request->input('last_name');
                 $user->username = $request->input('username');
@@ -160,7 +161,7 @@ class AdminController extends Controller
     public function delete($id){
 
         if(Session::has('adminsession')){
-            $user = User::find($id);            
+            $user = User::find($id);                    
             $user->delete();
             return redirect('/admin/view');
         }else{

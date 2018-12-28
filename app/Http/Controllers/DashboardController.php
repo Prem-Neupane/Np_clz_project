@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Menu;
+use App\SubMenu;
 
 class DashboardController extends Controller
 {
@@ -28,7 +29,7 @@ class DashboardController extends Controller
     public function index()
     {
         return view('dashboard')
-                            ->with('title',"Nepathya")
-                            ->with('menus',Menu::where('status','=',1)->get());
+                           ->with('menus',Menu::where('status','=',1)->get())
+                            ->with('submenus',SubMenu::where('status','=',1)->get());
     }
 }

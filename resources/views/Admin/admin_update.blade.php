@@ -29,7 +29,7 @@
 						<div class="col-md-12">							
 							
  							<form role="form" method="post" action = 
-							'{{ url('/admin/update_users/$users->id') }}' >
+							"{{ route('admin.update',['id' => $users ]) }}" >
 
 							{{-- error on updating the data...check the url above --}}
 

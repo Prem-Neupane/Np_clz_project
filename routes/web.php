@@ -36,7 +36,10 @@ Route::get('/logout', 'AdminController@logout');
 Route::get('/admin/delete/{id}','AdminController@delete');
 
 //to update users...(@problem)
-Route::get('/admin/update_users/{id}','AdminController@update_users');
+Route::match(['get','post'],'/admin/update_users/{id}',[
+	   'uses' =>'AdminController@update_users',
+	   'as'  =>'admin.update'
+	]);
 
 Route::get('/admin/toogle/{id}','AdminController@toogle_status');
 
