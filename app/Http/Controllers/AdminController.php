@@ -31,7 +31,7 @@ class AdminController extends Controller
 	    	}	
     	}
 
-    	return view('Admin.admin_login');
+    	return view('Admin.pages.admin_login');
     }
 
     public function logout(){        
@@ -44,7 +44,7 @@ class AdminController extends Controller
         //this is the session method to control access
 
         if(Session::has('adminsession')){
-            return view('Admin.admin_dashboard')->with('highlight,dashboard');
+            return view('Admin.pages.admin_dashboard')->with('highlight,dashboard');
         }else{
             return redirect('/admin')->with('flash_msg_err','You must login to access');
         }        
@@ -56,7 +56,7 @@ class AdminController extends Controller
         if(Session::has('adminsession')){
 
             if($request->isMethod('get')){
-                return view('Admin.admin_add');
+                return view('Admin.pages.admin_add');
              }else{
                 $this->validate($request,[
                 'first_name' => 'required|string|max:255',
@@ -100,7 +100,7 @@ class AdminController extends Controller
             if($request->isMethod('get')){
 
                 $user = User::find($id);
-                return view('Admin.admin_update')->with('users',$user);
+                return view('Admin.pages.admin_update')->with('users',$user);
 
              }else{
 
@@ -136,7 +136,7 @@ class AdminController extends Controller
         if(Session::has('adminsession')){
             $users = User::where('identity','!=','admin')->get();
 
-            return view('Admin.admin_viewusers')->with('users',$users);
+            return view('Admin.pages.admin_viewusers')->with('users',$users);
         }else{
             return redirect('/admin')->with('flash_msg_err','You must login to access');        
         }    
@@ -148,7 +148,7 @@ class AdminController extends Controller
         if(Session::has('adminsession')){
             $users = User::where('identity','=','admin')->get();            
 
-            return view('Admin.admin_viewadmins')->with('users',$users);
+            return view('Admin.pages.admin_viewadmins')->with('users',$users);
         }else{
             return redirect('/admin')->with('flash_msg_err','You must login to access');        
         }    

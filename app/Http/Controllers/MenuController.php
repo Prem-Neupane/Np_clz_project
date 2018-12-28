@@ -19,7 +19,7 @@ class MenuController extends Controller
     public function create()
     {
         if( Session::has('adminsession') ){
-            return view('Menu.add_menu')
+            return view('Admin.menu.add_menu')
                 ->with('menus',Menu::all());
         }else{
             

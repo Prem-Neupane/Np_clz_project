@@ -17,8 +17,8 @@
 
 <body>
 	
-	@include('layouts.adminLayout.admin_header')
-	@include('layouts.adminLayout.admin_sidebar')	
+	@include('Admin.adminLayout.admin_header')
+	@include('Admin.adminLayout.admin_sidebar')	
 	@yield('content')	
 
 	<script src="{{ asset('js/backend_js/jquery-1.11.1.min.js') }}"></script>
