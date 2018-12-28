@@ -7,6 +7,13 @@
 				<li class="active">Icons</li>
 			</ol>
 		</div><!--/.row-->
+
+		@if(Session::has('flash_msg_err'))
+			<div class="alert alert-danger alert-block">
+				<button type="button" class="close" data-dismiss="alert">x</button>
+				<strong>{{ Session('flash_msg_err') }}</strong>								
+			</div>					
+		@endif
 		
 		<div class="row">
 			<div class="col-lg-12">

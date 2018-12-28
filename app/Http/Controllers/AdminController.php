@@ -79,10 +79,11 @@ class AdminController extends Controller
                 $user->identity = $request->input('roles');
                 $user->active = 1;                          //added by admin so already active...
                 $user->save();
-                
+
                 if($request->input('roles') == 'admin')
                      return redirect('/admin/view2');   //view list of admins after adding admin
-                else return redirect('/admin/view');    //else if users are added, view list of users
+                else return redirect('/admin/view');    //else if users are added, view list of users                
+                
             }
         }else{
             return redirect('/admin')->with('flash_msg_err','You must login to access');
@@ -119,12 +120,25 @@ class AdminController extends Controller
                 $user->last_name = $request->input('last_name');
                 $user->username = $request->input('username');
                 $user->email = $request->input('email');                                     
-                $user->password = Hash::make($request->input('password'));                
+
+                if($request->input('password') != ""){
+
+                    if( strlen( $request->input('password') ) < 6){
+
+                       return redirect("/admin/update_users/$id")->with('flash_msg_err','password length is short');                        
+                    }else{
+                        $user->password = Hash::make($request->input('password'));                
+                    }
+                }
+
                 $user->gender = $request->input('gender');                
                 $user->identity = $request->input('roles');
-                $user->active = $request->input('active');
-                $user->save();
-                return redirect('/admin/view');
+                $user->active = $request->input('active');                
+                $user->save();                            
+
+                if($request->input('roles') == 'Admin')
+                     return redirect('/admin/view2');   //view list of admins after adding admin
+                else return redirect('/admin/view');    //else if users are added, view list of users
             }
         }else{
             return redirect('/admin')->with('flash_msg_err','You must login to access');
@@ -179,5 +193,6 @@ class AdminController extends Controller
         }else{
             return redirect('/admin')->with('flash_msg_err','You must login to access');        
         }
-    }
+    }    
+
 }

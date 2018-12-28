@@ -9,6 +9,13 @@
 			</ol>
 		</div><!--/.row-->
 
+		@if(Session::has('flash_msg_err'))
+			<div class="alert alert-danger alert-block">
+				<button type="button" class="close" data-dismiss="alert">x</button>
+				<strong>{{ Session('flash_msg_err') }}</strong>								
+			</div>					
+		@endif
+
 	    <div class="row">
 			<div class="col-lg-12">
 				<h1 class="page-header">User Form</h1>
@@ -69,8 +76,12 @@
 								</div>
 																
 								<div class="form-group col-md-6">
-									<label>Confirm Password</label>
-									<input type="password" name = 'password_confirmation' class="form-control">
+									<label>Roles</label>*
+									<select class="form-control" name = 'roles'>									
+									   	<option>Admin </option>						
+										<option>Student</option>
+										<option>Teacher</option>											
+									</select>
 								</div>		
 
 							</div>														
@@ -100,18 +111,6 @@
 									</div>									
 								</div>
 
-								<div class="form-group col-md-6">
-									<label>Roles</label>*
-									<select class="form-control" name = 'roles'>									
-									   	<option>Admin </option>						
-										<option>Student</option>
-										<option>Teacher</option>											
-									</select>
-								</div>
-
-							</div>
-
-							<div class="row">
 								<div class="form-horizontal col-md-6" role= "form">
 									<label>Active</label><br/>
 									<div class="radio-inline">
@@ -134,7 +133,9 @@
 										</label>
 									</div>									
 								</div>
+
 							</div>
+							
 								<br>
 								<center><button type="submit" class="btn btn-primary">Submit</button></center>																				
 							</div>
