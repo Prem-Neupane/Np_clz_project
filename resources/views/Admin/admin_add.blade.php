@@ -32,44 +32,56 @@
 							'{{ url('/admin/add_user') }}' >
 
 							{{ csrf_field() }}
-							
-								<div class="form-group">
+							<div class="row">
+								<div class="form-group col-md-6">
 									<label>First Name</label>
 									<input class="form-control" name = 'first_name' placeholder="Enter your first name">
 								</div>			
 
-								<div class="form-group">
+								<div class="form-group col-md-6">
 									<label>Last Name</label>
 									<input class="form-control" name = 'last_name' placeholder="Enter your last name">
 								</div>
-
-								<div class="form-group">									
+							</div>	
+							<div class="row">	
+								<div class="form-group col-md-6">									
 									<label>Username</label>
 									<input class="form-control" name = 'username' placeholder="Enter your Username">
 								</div>
 
-								<div class="form-group">									
+								<div class="form-group col-md-6">									
 									<label>E-mail</label>
 									<input class="form-control" name = 'email'placeholder="Enter your Email">
 								</div>
-
-								<div class="form-group">
+							</div>
+							<div class="row">
+								<div class="form-group col-md-6">
 									<label>Password</label>
 									<input type="password" name = 'password' class="form-control">
-								</div>
-																
-								<div class="form-group">
+								</div>	
+																							
+								<div class="form-group col-md-6">
 									<label>Confirm Password</label>
 									<input type="password" name = 'password_confirmation' class="form-control">
-								</div>																
-																
-								<div class="form-group">
-									<label>Choose your profile picture</label>*
-									<input type="file">
-									 <p class="help-block">Do not add any picture , it doesn't works</p>
 								</div>
-								
-								<div class="form-group">
+							</div>
+
+							<div class="row">	
+									<div  class="form-horizontal col-md-6" role="form"">
+									<label>Gender</label> <br/>
+									<div class="radio-inline">
+										<label>
+											<input type="radio" name="gender" id="optionsRadios1" value="1" checked>Male
+										</label>
+									</div>
+									<div class="radio-inline">
+										<label>
+											<input type="radio" name="gender" id="optionsRadios2" value="0">Female
+										</label>
+									</div>									
+								</div>		
+																
+								<div class="form-group col-md-6">
 									<label>Roles</label>
 									<select class="form-control" name = 'roles'>
 									    <option>Admin</option>							
@@ -77,22 +89,15 @@
 										<option>Teacher</option>											
 									</select>									
 								</div>
+							</div>
 
-								<div class="form-group">
-									<label>Gender</label>
-									<div class="radio">
-										<label>
-											<input type="radio" name="gender" id="optionsRadios1" value="1" checked>Male
-										</label>
-									</div>
-									<div class="radio">
-										<label>
-											<input type="radio" name="gender" id="optionsRadios2" value="0">Female
-										</label>
-									</div>									
-								</div>
-
-								<button type="submit" class="btn btn-primary">Submit</button>																				
+								{{-- <div class="form-group">
+									<label>Choose your profile picture</label>*
+									<input type="file">
+									 <p class="help-block">Do not add any picture , it doesn't works</p>
+								</div> --}}
+								<br/>
+								<center> <button type="submit" style="width:20%;" class="btn btn-primary btn-lg">Submit</button> </center>																				
 							</div>
 						
 						</form>
