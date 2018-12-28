@@ -81,8 +81,8 @@ class AdminController extends Controller
                 $user->save();
                 
                 if($request->input('roles') == 'admin')
-                     return redirect('/admin/view2');
-                else return redirect('/admin/view2');
+                     return redirect('/admin/view2');   //view list of admins after adding admin
+                else return redirect('/admin/view');    //else if users are added, view list of users
             }
         }else{
             return redirect('/admin')->with('flash_msg_err','You must login to access');

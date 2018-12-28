@@ -110,6 +110,14 @@
                             </div>
                         </div>
 
+                        <div class="form-group for">
+                                <label for="roles" class="col-md-4 col-form-label text-md-right">Roles</label>
+                                <select class="col-md-4 col-form-label text-md-right" name = 'roles'>
+                                    <option>Student</option>
+                                    <option>Teacher</option>                                            
+                                </select>                                   
+                            </div>
+
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
