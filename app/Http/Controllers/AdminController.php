@@ -19,7 +19,8 @@ class AdminController extends Controller
 	    	if(Auth::attempt([
                 'email'=> $data['email'],
                 'password'=>$data['password'],
-                'identity' => 'admin'
+                'identity' => 'admin',
+                'active'   => 1,
             ])){                
 
                 $user = User::where('email','=',$data['email'])->get();                
@@ -89,10 +90,6 @@ class AdminController extends Controller
             return redirect('/admin')->with('flash_msg_err','You must login to access');
         }        
     }
-
-
-    //problem on updating the users
-    //to do : update with and without password...
 
      public function update_users(Request $request, $id){
                 
