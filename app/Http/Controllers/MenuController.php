@@ -12,8 +12,13 @@ class MenuController extends Controller
 
     public function index()
     {
-        $menu  = Menu::all();
-        return $menu;   //return this to a page... @incomp.
+        if(Session::has('adminsession')){            
+            $menu  = Menu::all();
+            return view('Admin.menu.show_menu')->with("menus",$menu);   
+        }else{
+            return redirect('/admin')
+                    ->with('flash_msg_err','You must login to access');                                
+        }
     }
 
     public function create()
@@ -71,6 +76,29 @@ class MenuController extends Controller
 
     public function destroy($id)
     {
-        //
+        if(Session::has('adminsession')){
+            
+            $menu = Menu::find($id);
+            $menu->delete();
+            $menu->save();
+
+            return redirect('/menu/view');
+        }else{
+            return redirect('/admin')->with('flash_msg_err','You must login to access');
+        }
+    }
+
+    public function toogle_status($id){
+
+        if(Session::has('adminsession')){
+            
+            $menu = Menu::find($id);
+            $menu->status =  1 - $menu->status;           
+            $menu->save();            
+
+            return redirect('/menu/view');
+        }else{
+            return redirect('/admin')->with('flash_msg_err','You must login to access');        
+        }
     }
 }

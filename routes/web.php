@@ -29,19 +29,38 @@ Route::get('/admin/view','AdminController@view');
 //view the list of admins...
 Route::get('/admin/view2','AdminController@view_admins');
 
+//view the list of menus...
+Route::get('/menu/view','MenuController@index');
+
+//view the list of submenus...
+// Route::get('/submenu/view',)
+
 //simple logout functionality...
 Route::get('/logout', 'AdminController@logout');
 
-//to delete the users...(@problem)
+//to delete the users...
 Route::get('/admin/delete/{id}','AdminController@delete');
 
-//to update users...(@problem)
+//to update users...
 Route::match(['get','post'],'/admin/update_users/{id}',[
 	   'uses' =>'AdminController@update_users',
 	   'as'  =>'admin.update'
-	]);
+    ]);
+    
+//to delete the menus...
+Route::get('/menu/delete/{id}','MenuController@destroy');
 
+// //to update menus...
+// Route::match(['get','post'],'/menu/update_menus/{id}',[
+// 	   'uses' =>'MenuController@update_users',
+// 	   'as'  =>'admin.update'
+// 	]);
+
+//to toogle active to inactive and vice-versa in button pressed
 Route::get('/admin/toogle/{id}','AdminController@toogle_status');
+
+//to toogle active to inactive and vice-versa in button pressed
+Route::get('/menu/toogle/{id}','MenuController@toogle_status');
 
 //form to add users...
 Route::match(['get','post'],'/admin/add_user','AdminController@register_users');

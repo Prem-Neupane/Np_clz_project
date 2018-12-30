@@ -42,6 +42,14 @@
 					<li>
 						<a href="{{ url('/admin/view2') }}"><svg class="glyph stroked clipboard with paper"><use xlink:href="#stroked-clipboard-with-paper"/></svg>Admins</a>
 					</li>
+
+					<li>
+						<a href="{{ url('/menu/view') }}"><svg class="glyph stroked clipboard with paper"><use xlink:href="#stroked-clipboard-with-paper"/></svg>Menus</a>
+					</li>
+
+					<li>
+						<a href="#"><svg class="glyph stroked clipboard with paper"><use xlink:href="#stroked-clipboard-with-paper"/></svg>Sub Menus</a>
+					</li>
 										
 				</ul>
 			</li>
