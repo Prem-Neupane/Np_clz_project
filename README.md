@@ -37,7 +37,7 @@ These instructions will get you a copy of the project up and running on your loc
          
     
     
-    on terminal by going inside the project folder using cd
+    on terminal by going inside the project folder using cd /var/www/html/project_name
                    
 7. then go to mysql and create a database , give name as in .env file then
 
