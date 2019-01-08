@@ -67,7 +67,7 @@
 
 
 							    	<td >
-							    		<a href="/admin/update_users/{{ $user->id }}">
+							    		<a href="/admin/{{ $user->id }}/edit">
 								    		<button type="button" class = 'btn btn-primary'>Update
 								    		</button>								    		
 							    		</a>

@@ -48,7 +48,7 @@
 					</li>
 
 					<li>
-						<a href="#"><svg class="glyph stroked clipboard with paper"><use xlink:href="#stroked-clipboard-with-paper"/></svg>Sub Menus</a>
+						<a href="{{ url('/submenu/view') }}"><svg class="glyph stroked clipboard with paper"><use xlink:href="#stroked-clipboard-with-paper"/></svg>Sub Menus</a>
 					</li>
 										
 				</ul>

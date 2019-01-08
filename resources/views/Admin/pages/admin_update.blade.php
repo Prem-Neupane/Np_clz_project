@@ -38,6 +38,9 @@
  							<form role="form" method="post" action = 
 							"{{ route('admin.update',['id' => $users ]) }}" >
 
+							{{ method_field('patch') }} 
+							{{-- to update we use patch method --}}
+
 							{{ csrf_field() }}
 							
 							<div class="row">

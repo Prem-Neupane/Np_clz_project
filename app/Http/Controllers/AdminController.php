@@ -91,55 +91,66 @@ class AdminController extends Controller
         }        
     }
 
-     public function update_users(Request $request, $id){
-                
-        if(Session::has('adminsession')){
+    //this function shows the form with values that is edited on button press...
+    public function edit($id){
 
-            if($request->isMethod('get')){
+        if(Session::has('adminsession')){            
 
-                $user = User::find($id);
-                return view('Admin.pages.admin_update')->with('users',$user);
+            $user = User::find($id);
+            return view('Admin.pages.admin_update')->with('users',$user);
 
-             }else{
-
-                $this->validate($request,[
-                'first_name' => 'required|string|max:255',
-                'last_name' => 'required|string|max:255',
-                'username' => 'required|string|max:255',
-                'email' => 'required|string|email|max:255',
-                'gender' => 'required',
-                'roles' => 'required',
-                'active' => 'required'
-                ]);
-
-                $user = User::find($id);                
-                $user->first_name = $request->input('first_name');
-                $user->last_name = $request->input('last_name');
-                $user->username = $request->input('username');
-                $user->email = $request->input('email');                                     
-
-                if($request->input('password') != ""){
-
-                    if( strlen( $request->input('password') ) < 6){
-
-                       return redirect("/admin/update_users/$id")->with('flash_msg_err','password length is short');                        
-                    }else{
-                        $user->password = Hash::make($request->input('password'));                
-                    }
-                }
-
-                $user->gender = $request->input('gender');                
-                $user->identity = $request->input('roles');
-                $user->active = $request->input('active');                
-                $user->save();                            
-
-                if($request->input('roles') == 'Admin')
-                     return redirect('/admin/view2');   //view list of admins after adding admin
-                else return redirect('/admin/view');    //else if users are added, view list of users
-            }
         }else{
             return redirect('/admin')->with('flash_msg_err','You must login to access');
-        }        
+        }
+
+    }
+
+
+    //after button press ,this function  saves the edited data...
+    public function update(Request $request,$id){
+
+        if(Session::has('adminsession')){            
+
+            $this->validate($request,[
+                    'first_name' => 'required|string|max:255',
+                    'last_name' => 'required|string|max:255',
+                    'username' => 'required|string|max:255',
+                    'email' => 'required|string|email|max:255',
+                    'gender' => 'required',
+                    'roles' => 'required',
+                    'active' => 'required'
+                    ]);
+
+                    $user = User::find($id);                
+                    $user->first_name = $request->input('first_name');
+                    $user->last_name = $request->input('last_name');
+                    $user->username = $request->input('username');
+                    $user->email = $request->input('email');                                     
+
+                    if($request->input('password') != ""){
+
+                        if( strlen( $request->input('password') ) < 6){
+
+                           return redirect("/admin/update_users/$id")->with('flash_msg_err','password length is short');                        
+                        }else{
+                            $user->password = Hash::make(request('password'));                
+                        }
+                    }
+
+                    $user->gender = $request->input('gender');                
+                    $user->identity = $request->input('roles');
+                    $user->active = $request->input('active');                
+                    $user->save();                            
+
+                    if($request->input('roles') == 'Admin')
+                         return redirect('/admin/view2');   //view list of admins after adding admin
+                    else return redirect('/admin/view');    //else if users are added, view list of users
+                }else{
+
+                    return redirect('/admin')->with('flash_msg_err','You must login to access');
+
+                }
+
     }
 
     //to view users as a table in admin panel...

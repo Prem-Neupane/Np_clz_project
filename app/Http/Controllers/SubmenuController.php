@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Menu;
 use App\SubMenu;
+use DB;
 use Session;
 
 class SubmenuController extends Controller
@@ -16,7 +18,17 @@ class SubmenuController extends Controller
      */
     public function index()
     {
-        //
+        if(Session::has('adminsession')){            
+            $submenu  = DB::table('menus')
+                        ->join('submenus','menus.id','=','submenus.parent_id')
+                        ->select('menus.title as menutitle', 'submenus.*')                        
+                        ->get();            
+
+            return view('Admin.menu.show_submenu')->with("submenus",$submenu);   
+        }else{
+            return redirect('/admin')
+                    ->with('flash_msg_err','You must login to access');                                
+        }
     }
 
     /**
@@ -103,6 +115,30 @@ class SubmenuController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        if(Session::has('adminsession')){
+            
+            $submenu = SubMenu::find($id);            
+            $submenu->delete();            
+
+            return redirect('/submenu/view');
+        }else{
+            return redirect('/admin')->with('flash_msg_err','You must login to access');        
+        }
+        
+    }
+
+     public function toogle_status($id){
+
+        if(Session::has('adminsession')){
+            
+            $submenu = SubMenu::find($id);
+            $submenu->status =  1 - $submenu->status;           
+            $submenu->save();            
+
+            return redirect('/submenu/view');
+        }else{
+            return redirect('/admin')->with('flash_msg_err','You must login to access');        
+        }
     }
 }

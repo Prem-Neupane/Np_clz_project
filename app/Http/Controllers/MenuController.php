@@ -79,8 +79,7 @@ class MenuController extends Controller
         if(Session::has('adminsession')){
             
             $menu = Menu::find($id);
-            $menu->delete();
-            $menu->save();
+            $menu->delete();     
 
             return redirect('/menu/view');
         }else{
