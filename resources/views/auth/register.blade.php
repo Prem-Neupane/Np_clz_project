@@ -113,8 +113,8 @@
                         <div class="form-group for">
                                 <label for="roles" class="col-md-4 col-form-label text-md-right">Roles</label>
                                 <select class="col-md-4 col-form-label text-md-right" name = 'roles'>
-                                    <option>Student</option>
-                                    <option>Teacher</option>                                            
+                                    <option value="2"> Student </option>
+                                    <option value="1"> Teacher </option>                                            
                                 </select>                                   
                             </div>
 

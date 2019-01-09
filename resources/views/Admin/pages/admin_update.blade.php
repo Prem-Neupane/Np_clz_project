@@ -72,18 +72,26 @@
 
 							<div class="row">
 
-
+								
 								<div class="form-group col-md-6">
 									<label>Password</label>
 									<input type="password" name = 'password' class="form-control">
 								</div>
 																
 								<div class="form-group col-md-6">
-									<label>Roles</label>*
+									<label>Roles</label>
 									<select class="form-control" name = 'roles'>									
-									   	<option>Admin </option>						
-										<option>Student</option>
-										<option>Teacher</option>											
+									   	<option value="0" 
+									   	@if($users->identity == '0') selected @endif
+									   	>Admin</option>							
+
+										<option value="2"
+											@if($users->identity == '2') selected @endif>
+										Student</option>
+
+										<option value="1"
+											@if($users->identity == '1') selected @endif
+											>Teacher</option>											
 									</select>
 								</div>		
 

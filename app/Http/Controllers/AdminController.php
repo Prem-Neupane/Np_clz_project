@@ -19,7 +19,7 @@ class AdminController extends Controller
 	    	if(Auth::attempt([
                 'email'=> $data['email'],
                 'password'=>$data['password'],
-                'identity' => 'admin',
+                'identity' => '0',
                 'active'   => 1,
             ])){                
 
@@ -77,11 +77,12 @@ class AdminController extends Controller
                 $user->email = $request->input('email');                                    
                 $user->password = Hash::make($request->input('password'));
                 $user->gender = $request->input('gender');                
-                $user->identity = $request->input('roles');
+                $user->identity = $request->input('roles');                              
+                
                 $user->active = 1;                          //added by admin so already active...
                 $user->save();
 
-                if($request->input('roles') == 'Admin')
+                if($request->input('roles') == '0')
                      return redirect('/admin/view2');   //view list of admins after adding admin
                 else return redirect('/admin/view');    //else if users are added, view list of users                
                 
@@ -97,6 +98,9 @@ class AdminController extends Controller
         if(Session::has('adminsession')){            
 
             $user = User::find($id);
+
+            if($user->identity == '0') return redirect('/admin/view2')->with('flash_msg_err',"Can't update other admin");
+
             return view('Admin.pages.admin_update')->with('users',$user);
 
         }else{
@@ -109,7 +113,7 @@ class AdminController extends Controller
     //after button press ,this function  saves the edited data...
     public function update(Request $request,$id){
 
-        if(Session::has('adminsession')){            
+        if(Session::has('adminsession')){                   
 
             $this->validate($request,[
                     'first_name' => 'required|string|max:255',
@@ -137,12 +141,12 @@ class AdminController extends Controller
                         }
                     }
 
-                    $user->gender = $request->input('gender');                
-                    $user->identity = $request->input('roles');
+                    $user->gender = $request->input('gender');
+                    $user->identity = $request->input('roles');                                                        
                     $user->active = $request->input('active');                
                     $user->save();                            
 
-                    if($request->input('roles') == 'Admin')
+                    if($request->input('roles') == '0')
                          return redirect('/admin/view2');   //view list of admins after adding admin
                     else return redirect('/admin/view');    //else if users are added, view list of users
                 }else{
@@ -156,7 +160,7 @@ class AdminController extends Controller
     //to view users as a table in admin panel...
     public function view(){
         if(Session::has('adminsession')){
-            $users = User::where('identity','!=','admin')->get();
+            $users = User::where('identity','!=','0')->get();
 
             return view('Admin.pages.admin_viewusers')->with('users',$users);
         }else{
@@ -168,7 +172,7 @@ class AdminController extends Controller
     //to view admins as a table in admin panel...
     public function view_admins(){
         if(Session::has('adminsession')){
-            $users = User::where('identity','=','admin')->get();            
+            $users = User::where('identity','=','0')->get();            
 
             return view('Admin.pages.admin_viewadmins')->with('users',$users);
         }else{
@@ -177,11 +181,21 @@ class AdminController extends Controller
     }
 
     //remove the users...
-    public function delete($id){
+    public function delete($id){        
 
         if(Session::has('adminsession')){
+
+
             $user = User::find($id);                    
+
+
+            if($user->identity == '0') return redirect('/admin/view2')->with('flash_msg_err',"Can't delete a admin");
+            
             $user->delete();
+
+            // if(id == current user id ) lgoout
+            // if($id ==  auth()->User()->id ) return redirect('/admin');
+
             return redirect('/admin/view');
         }else{
             return redirect('/admin')->with('flash_msg_err','You must login to access');        
@@ -196,7 +210,10 @@ class AdminController extends Controller
             $user->active =  1 - $user->active;           
             $user->save();
 
-            if($user->identity == 'admin') return redirect('/admin/view2'); 
+            // if id == current_user_id logout...
+            if($id ==  auth()->User()->id ) return redirect('/admin');
+
+            if($user->identity == '0') return redirect('/admin/view2'); 
             else return redirect('/admin/view');
         }else{
             return redirect('/admin')->with('flash_msg_err','You must login to access');        

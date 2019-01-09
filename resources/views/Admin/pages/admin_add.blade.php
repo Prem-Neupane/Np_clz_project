@@ -32,6 +32,7 @@
 							'{{ url('/admin/add_user') }}' >
 
 							{{ csrf_field() }}
+
 							<div class="row">
 								<div class="form-group col-md-6">
 									<label>First Name</label>
@@ -84,9 +85,9 @@
 								<div class="form-group col-md-6">
 									<label>Roles</label>
 									<select class="form-control" name = 'roles'>
-									    <option>Admin</option>							
-										<option>Student</option>
-										<option>Teacher</option>											
+									    <option value="0">Admin</option>							
+										<option value="2">Student</option>
+										<option value="1">Teacher</option>											
 									</select>									
 								</div>
 							</div>

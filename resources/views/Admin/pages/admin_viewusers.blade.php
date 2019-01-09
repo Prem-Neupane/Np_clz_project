@@ -39,13 +39,17 @@
 						        <th data-field="action"  colspan="2">Actions</th>
 						    </tr>
 						    </thead>
-						    @foreach($users as $user)
+						    @foreach($users as $user)						    	
 							    <tr>
 							    	<td >{{ $user->id }}</td>
 							    	<td >{{ $user->first_name.' '.$user->last_name }}</td>
 					    			<td >{{ $user->username }}</td>
 							    	<td >{{ $user->email }}</td>
-							    	<td >{{ $user->identity }}</td>
+
+							    	@if($user->identity == '1') <td>Teacher</td>
+							    	@else <td>Student</td>
+							    	@endif
+							    	
 							    	@if($user->gender == 0)
 							    		<td >Female</td>
 							    	@else <td > Male </td>

@@ -32,8 +32,7 @@
 						        <th data-field="id" >ID</th>
 						        <th data-field="name" >Name</th>
 						        <th data-field="username" >Username</th>
-						        <th data-field="email" >Email-id</th>
-						        <th data-field="role" >Role</th>
+						        <th data-field="email" >Email-id</th>						       
 						        <th data-field="gender" >Gender</th>
 						        <th data-field="status" >Status</th>						        
 						    </tr>
@@ -43,8 +42,7 @@
 							    	<td >{{ $user->id }}</td>
 							    	<td >{{ $user->first_name.' '.$user->last_name }}</td>
 					    			<td >{{ $user->username }}</td>
-							    	<td >{{ $user->email }}</td>
-							    	<td >{{ $user->identity }}</td>
+							    	<td >{{ $user->email }}</td>							    	
 							    	@if($user->gender == 0)
 							    		<td >Female</td>
 							    	@else <td > Male </td>
