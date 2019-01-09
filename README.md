@@ -29,7 +29,8 @@ These instructions will get you a copy of the project up and running on your loc
            cd  /var/www/html/project_name              
            php  artisan key:generate        
            
-5. if it is not working,may be your composer path is in incorrect folder
+5. if it is not working,may be your composer path is in incorrect folder,In some cases, it must be in .profile file not in        .bash_profile file else skip step - 6.
+
 6. Temporarily , you may type 
 
          
@@ -37,7 +38,7 @@ These instructions will get you a copy of the project up and running on your loc
          
     
     
-    on terminal by going inside the project folder using cd /var/www/html/project_name
+    on terminal by going inside the project folder using cd /var/www/html/project_name or correct the path. and continue to step 4.
                    
 7. then go to mysql and create a database , give name as in .env file then
 
@@ -51,24 +52,9 @@ These instructions will get you a copy of the project up and running on your loc
          
             php artisan serve
          
-
-9. it should work,
-    
-10. for permanent , follow these steps, after this you won't need to do composer install everytime after downloading the project
-
-        
-             cd
-             gedit .bash_profile
-             //copy the composer path
-             gedit .profile
-             //paste the composer path and save it.                   
-       
-       
-    if it is not solving the problem , search the problem in google or ask others.
-   
-11. open the project in browser,
-12. register the user
-13. user must be activate by admin, but for now activate yourself since there is now user with admin permissions
+ 9. open the project in browser,
+10. register the user
+11. user must be activated by admin, but for now activate yourself, since there is now user with admin permissions
 
      - go to mysql and select the database
      - update users by typing
@@ -83,7 +69,7 @@ These instructions will get you a copy of the project up and running on your loc
     - update users by typing 
         
                 
-            update users set active = 1 , identity = 'admin';
+            update users set active = 1 , identity = '0';
         
        
 15. for admin panel , go to    http://localhost:8000/admin  or http://127.0.0.1:8000/admin   and login
