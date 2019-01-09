@@ -24,6 +24,10 @@
 					<li>
 						<a href="{{ url('/menus/create') }}"><svg class="glyph stroked plus sign"><use xlink:href="#stroked-plus-sign"/></svg> Add menu</a>
 					</li>
+
+					<li>
+						<a href="{{ url('/submenu/create') }}"><svg class="glyph stroked plus sign"><use xlink:href="#stroked-plus-sign"/></svg> Add Submenu</a>
+					</li>
 										
 				</ul>
 			</li>

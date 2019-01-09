@@ -38,7 +38,14 @@ class SubmenuController extends Controller
      */
     public function create()
     {
-        //we create the submenu from the same page for creating the menus...
+         if( Session::has('adminsession') ){
+            return view('Admin.menu.add_submenu')
+                ->with('menus',Menu::all());
+        }else{
+            
+            return redirect('/admin')
+                    ->with('flash_msg_err','You must login to access');                    
+        }
     }
 
     /**

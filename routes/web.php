@@ -35,6 +35,9 @@ Route::get('/menu/view','MenuController@index');
 //view the list of submenus...
 Route::get('/submenu/view','SubmenuController@index');
 
+//form to create submenu...
+Route::get('/submenu/create','SubmenuController@create');
+
 //simple logout functionality...
 Route::get('/logout', 'AdminController@logout');
 
