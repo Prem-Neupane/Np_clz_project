@@ -14,6 +14,12 @@
 				<strong>{{ Session('flash_msg_err') }}</strong>								
 			</div>					
 		@endif
+
+		 @if(session('success'))
+            <div class="alert alert-success" role="alert">
+                {{ session('success') }}
+            </div>
+        @endif
 		
 		<div class="row">
 			<div class="col-lg-12">
@@ -56,7 +62,7 @@
                                     
                                     <td >
                                         {{-- <a href="/menu/update_menu/{{ $menu->id }}"> --}}
-                                        <a href="#">
+                                        <a href="/menu/{{ $menu->id }}/edit">
 								    		<button type="button" class = 'btn btn-primary'>Update
 								    		</button>								    		
 							    		</a>

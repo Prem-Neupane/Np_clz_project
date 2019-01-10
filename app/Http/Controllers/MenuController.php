@@ -50,7 +50,7 @@ class MenuController extends Controller
             $menu->slug = $request->input('slug');
             $menu->save();
 
-            return redirect('/menus/create')->with('success','menu added');
+            return redirect('/menu/view')->with('success','menu added');
 
         }else{
             
@@ -66,12 +66,40 @@ class MenuController extends Controller
 
     public function edit($id)
     {
-        //
+        if(Session::has('adminsession')){
+            
+            $menu = Menu::find($id);
+            // return dd($menu);
+            return view('Admin.menu.update_menu')->with('menu',$menu);                
+
+            // return redirect("/menu/update/$id")->with('menus',$menu);
+
+        }else{
+            return redirect('/admin')->with('flash_msg_err','You must login to access');
+        }
     }
 
     public function update(Request $request, $id)
     {
-        //
+        if(Session::has('adminsession')){
+
+            $this->validate($request,[
+                'title' => 'required|string|max:25',
+                'status' => 'required',
+                'slug'  => 'required'
+            ]);
+
+            $menu = Menu::find($id);
+            $menu->title = $request->input(['title']);
+            $menu->status = $request->input(['status']);
+            $menu->slug = $request->input(['slug']);
+            $menu->save();
+
+            return redirect('/menu/view')->with('success','Menu succesfully updated');
+
+        }else{
+            return redirect('/admin')->with('flash_msg_err','You must login to access');
+        }
     }
 
     public function destroy($id)

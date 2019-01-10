@@ -14,6 +14,12 @@
 				<strong>{{ Session('flash_msg_err') }}</strong>								
 			</div>					
 		@endif
+
+		 @if(session('success'))
+            <div class="alert alert-success" role="alert">
+                {{ session('success') }}
+            </div>
+        @endif
 		
 		<div class="row">
 			<div class="col-lg-12">
@@ -31,7 +37,7 @@
 						    <tr>
 						        <th data-field="id" >ID</th>
 						        <th data-field="title" >Title</th>
-						        <th data-field="slug" >Main Menu</th>
+						        <th data-field="main_menu" >Main Menu</th>
 						        <th data-field="created_at" >Created at</th>
 						        <th data-field="updated_at" >Updated at</th>						        
                                 <th data-field="status" >Status</th>						         
@@ -54,9 +60,8 @@
 							    	<td ><a href="/submenu/toogle/{{ $submenu->id }}"> <button class = 'btn btn-success'>active</button> </td></a>  
                                     @endif
                                     
-                                    <td >
-                                        {{-- <a href="/menu/update_menu/{{ $menu->id }}"> --}}
-                                        <a href="#">
+                                    <td >                                        
+                                        <a href="/submenu/{{ $submenu->id }}/edit">
 								    		<button type="button" class = 'btn btn-primary'>Update
 								    		</button>								    		
 							    		</a>

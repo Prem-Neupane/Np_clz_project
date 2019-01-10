@@ -13,4 +13,8 @@ class SubMenu extends Model
     public function menu(){
         return $this->belongsTO('App\Menu');
     }
+
+    // public function getMenuName(){
+    // 	return $this->belongsTO('App\Menu','menu_id');
+    // }
 }

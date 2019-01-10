@@ -20,11 +20,12 @@ class SubmenuController extends Controller
     {
         if(Session::has('adminsession')){            
             $submenu  = DB::table('menus')
-                        ->join('submenus','menus.id','=','submenus.parent_id')
+                        ->join('submenus','menus.id','=','submenus.menu_id')
                         ->select('menus.title as menutitle', 'submenus.*')                        
                         ->get();            
 
-            return view('Admin.menu.show_submenu')->with("submenus",$submenu);   
+            return view('Admin.menu.show_submenu')->with("submenus",$submenu);  
+
         }else{
             return redirect('/admin')
                     ->with('flash_msg_err','You must login to access');                                
@@ -69,10 +70,10 @@ class SubmenuController extends Controller
             $submenu->title = $request->input('title');
             $submenu->status = $request->input('status');
             $submenu->slug = $request->input('slug');
-            $submenu->parent_id = $request->input('parent_menu_id');
+            $submenu->menu_id = $request->input('parent_menu_id');
             $submenu->save();
 
-            return redirect('/menus/create')->with('success','submenu added');
+            return redirect('/submenu/view')->with('success','submenu added');
 
         }else{
             
@@ -99,7 +100,16 @@ class SubmenuController extends Controller
      */
     public function edit($id)
     {
-        //
+        if(Session::has('adminsession')){
+
+            $submenu = SubMenu::find($id);
+            $menu = Menu::all();
+            return view('Admin.menu.update_submenu')->with('submenu',$submenu)
+                                                    ->with('menus',$menu);
+
+        }else{
+            return redirect('/admin')->with('flash_msg_err','You must login to continue');
+        }
     }
 
     /**
@@ -111,7 +121,27 @@ class SubmenuController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if(Session::has('adminsession')){
+
+            $this->validate($request,[
+                'title' => 'required|string|max:25',
+                'status' => 'required',
+                'slug'  => 'required',
+                'menu_id'=>'required'
+            ]);
+
+            $submenu = SubMenu::find($id);
+            $submenu->title = $request->input(['title']);
+            $submenu->status = $request->input(['status']);
+            $submenu->slug = $request->input(['slug']);
+            $submenu->menu_id =  $request->input(['menu_id']);
+            $submenu->save();
+
+            return redirect('/submenu/view')->with('success','submenu succesfully updated');
+
+        }else{
+            return redirect('/admin')->with('flash_msg_err','You must login to access');
+        }
     }
 
     /**

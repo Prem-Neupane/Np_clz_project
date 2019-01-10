@@ -15,9 +15,13 @@ class CreateSubmenusTable extends Migration
     {
         Schema::create('submenus', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('parent_id');
+            $table->integer('menu_id')->unsigned()->nullable();
             // $table->index('parent_id');
-            // $table->foreign('parent_id')->references('id')->on('menus')->onDelete('cascade');        
+            $table->foreign('menu_id')->references('id')->on('menus')
+                                                        ->onDelete('set null')
+                                      ->references('id')->on('menus')
+                                                        ->onUpdate('cascade');
+
             $table->string('title');
             $table->string('slug');
             $table->boolean('status');
