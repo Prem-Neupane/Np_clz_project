@@ -35,7 +35,7 @@
 						<table data-toggle="table">
 						    <thead>
 						    <tr>
-						        <th data-field="id" >ID</th>
+						        <th data-field="id" >SN</th>
 						        <th data-field="title" >Title</th>
 						        <th data-field="main_menu" >Main Menu</th>
 						        <th data-field="created_at" >Created at</th>

@@ -20,6 +20,7 @@ Route::match(['get','post'],'/admin','AdminController@login');
 
 //if login success for admin...
 Route::get('admin/dashboard', 'AdminController@dashboard');
+
 Route::Auth();
 //view the list of users...
 Route::get('/admin/view','AdminController@view');

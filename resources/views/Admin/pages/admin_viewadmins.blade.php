@@ -29,7 +29,7 @@
 						<table data-toggle="table">
 						    <thead>
 						    <tr>
-						        <th data-field="id" >ID</th>
+						        <th data-field="id" >SN</th>
 						        <th data-field="name" >Name</th>
 						        <th data-field="username" >Username</th>
 						        <th data-field="email" >Email-id</th>						       

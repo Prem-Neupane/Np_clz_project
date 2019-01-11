@@ -10,6 +10,7 @@ use Session;
 
 class AdminController extends Controller
 {
+     
     public function login(Request $request){    
 
     	if($request->isMethod('post')){
@@ -24,9 +25,10 @@ class AdminController extends Controller
             ])){                
 
                 $user = User::where('email','=',$data['email'])->get();                
-                Session::put('adminsession', $user[0]->username);                   
+                Session::put('adminsession', $user[0]->username);                                  
+              
 
-	    	  return redirect('/admin/dashboard');    
+	    	  return redirect('/admin/dashboard');
 	    	}else{
                 return redirect('/admin')->with('flash_msg_err','invalid username or password');	    		
 	    	}	
@@ -35,21 +37,23 @@ class AdminController extends Controller
     	return view('Admin.pages.admin_login');
     }
 
+    public function dashboard(){
+        if(Session::has('adminsession')){
+            $students = User::where('identity','=','2')->get();
+            $teachers = User::where('identity','=','1')->get();            
+
+            return view('Admin.pages.admin_dashboard')
+                                        ->with('scount',count($students)) 
+                                        ->with("tcount",count($teachers));
+        }else{
+            return redirect('/admin')->with('flash_msg_err','invalid username or password');                
+        }        
+    }
+
     public function logout(){        
         Session::flush();
         return redirect('/admin')->with('flash_msg_success','Successfully logged out');        
     }
-
-    public function dashboard(){    	        
-
-        //this is the session method to control access
-
-        if(Session::has('adminsession')){
-            return view('Admin.pages.admin_dashboard')->with('highlight,dashboard');
-        }else{
-            return redirect('/admin')->with('flash_msg_err','You must login to access');
-        }        
-    }    
 
     //to show the form to add the users...
     public function register_users(Request $request){
