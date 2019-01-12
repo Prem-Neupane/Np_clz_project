@@ -38,7 +38,7 @@ class SubmenuController extends Controller
     {
          if( Session::has('adminsession') ){
             return view('Admin.menu.add_submenu')
-                ->with('menus',Menu::all());
+                ->with('menus',Menu::where('status','=',1)->get());
         }else{
             
             return redirect('/admin')
@@ -100,7 +100,7 @@ class SubmenuController extends Controller
         if(Session::has('adminsession')){
 
             $submenu = SubMenu::find($id);
-            $menu = Menu::all();
+            $menu = Menu::where('status','=',1)->get();
             return view('Admin.menu.update_submenu')->with('submenu',$submenu)
                                                     ->with('menus',$menu);
 
