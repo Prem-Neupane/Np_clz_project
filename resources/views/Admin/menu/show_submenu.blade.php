@@ -44,12 +44,14 @@
                                 <th data-field="action"  colspan="2">Actions</th>
 						    </tr>
 						    </thead>
-						    @foreach($submenus as $submenu)
+
+						    <?php $i = 1 ?>  {{-- for serial number of items --}}
+						    @foreach($submenus as $submenu)						    	
 							    <tr>
-							    	<td >{{ $submenu->id }}</td>
-							    	<td >{{ $submenu->title }}</td>
-					    			<td >{{ $submenu->menutitle }}</td>					    			
-							    	<td >{{ $submenu->created_at }}</td>
+							    	<td >{{ $i++ }}</td>
+							    	<td >{{ $submenu->title }}</td>					    		
+					    			<td >{{ $submenu->menu->title }}</td>					    		
+					    			<td >{{ $submenu->created_at }}</td>
                                     <td >{{ $submenu->updated_at }}</td>                                    							    	
 							    	@if($submenu->status == 0)
 							    		  <td > <a href="/submenu/toogle/{{ $submenu->id }}">  
@@ -73,7 +75,7 @@
 							    		</a>
 							    	</td>
 							    		
-							    </tr>
+							    </tr>														    
 						    @endforeach
 						    
 						</table>

@@ -49,7 +49,7 @@
 							<svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg>
 						</div>
 						<div class="col-sm-9 col-lg-7 widget-right">
-							<div class="large">24</div>
+							<div class="large">1</div>
 							<div class="text-muted">New Users</div>
 						</div>
 					</div>
@@ -62,7 +62,7 @@
 							<svg class="glyph stroked app-window-with-content"><use xlink:href="#stroked-app-window-with-content"></use></svg>
 						</div>
 						<div class="col-sm-9 col-lg-7 widget-right">
-							<div class="large">25.2k</div>
+							<div class="large">25</div>
 							<div class="text-muted">Page Views</div>
 						</div>
 					</div>

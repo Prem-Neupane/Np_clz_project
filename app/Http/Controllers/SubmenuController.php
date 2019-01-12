@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Menu;
 use App\SubMenu;
-use DB;
 use Session;
 
 class SubmenuController extends Controller
@@ -19,11 +18,9 @@ class SubmenuController extends Controller
     public function index()
     {
         if(Session::has('adminsession')){            
-            $submenu  = DB::table('menus')
-                        ->join('submenus','menus.id','=','submenus.menu_id')
-                        ->select('menus.title as menutitle', 'submenus.*')                        
-                        ->get();            
 
+            // $submenu = SubMenu::where('menu_id','!=',null)->get();   or use the below one.        
+            $submenu = SubMenu::has('menu')->get();            
             return view('Admin.menu.show_submenu')->with("submenus",$submenu);  
 
         }else{

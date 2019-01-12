@@ -44,9 +44,10 @@
                                 <th data-field="action"  colspan="2">Actions</th>
 						    </tr>
 						    </thead>
+						    <?php $i = 1 ?>  {{-- for serial number of items --}}
 						    @foreach($menus as $menu)
 							    <tr>
-							    	<td >{{ $menu->id }}</td>
+							    	<td >{{ $i++ }}</td>
 							    	<td >{{ $menu->title }}</td>
 					    			<td >{{ $menu->slug }}</td>
 							    	<td >{{ $menu->created_at }}</td>

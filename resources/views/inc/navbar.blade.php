@@ -16,7 +16,7 @@
             
           @foreach($menus as $menu)
 
-            @if($menu->submenus->count() == 0)
+            @if($menu->activesubmenus->count() == 0)
 
               <li class="nav-item">
                   <a class="nav-link" href="{{ $menu->slug }}">{{ $menu->title }}</a>
@@ -28,7 +28,7 @@
                   </a>
 
                   <div class="dropdown-menu" aria-labelledby="dropdown03">
-                     @foreach($menu->submenus as $submenu)                              
+                     @foreach($menu->activesubmenus as $submenu)                              
                         <a class="dropdown-item" href="{{ $menu->slug }}/{{ $submenu->slug }}">{{ $submenu->title }}</a>                              
                      @endforeach                                   
                   </div>
