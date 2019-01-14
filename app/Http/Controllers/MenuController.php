@@ -51,8 +51,7 @@ class MenuController extends Controller
 
             return redirect('/menu/view')->with('success','menu added');
 
-        }else{
-            
+        }else{            
             return redirect('/admin')->with('flash_msg_err','You must login to access');
         }
                 
