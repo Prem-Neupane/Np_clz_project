@@ -10,7 +10,6 @@
 <link href="{{ asset('css/backend_css/styles.css') }}" rel="stylesheet">
 <link href="{{ asset('css/backend_css/bootstrap-table.css') }}" rel="stylesheet">
 
-
 <script src="{{ asset('js/backend_js/lumino.glyphs.js') }}"></script>
 
 </head>
@@ -46,7 +45,17 @@
 		$(window).on('resize', function () {
 		  if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
 		})
-	</script>		
+	</script>
+	<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+	 	<script>
+			 CKEDITOR.replace( 'article-ckeditor1' );
+	 	</script>
+
+ 	<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+	 	<script>
+			 CKEDITOR.replace( 'article-ckeditor2' );
+	 	</script>
+
 </body>
 
 </html>
