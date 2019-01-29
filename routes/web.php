@@ -92,3 +92,17 @@ Route::patch('/submenu/update/{id}',[
     'uses' => 'SubmenuController@update',
     'as'  => 'submenu.update'
 ]);
+
+//Teachers Profile  part:
+// Route::resource('teachers','TeacherController');
+// Route::get('view/teachers_list','TeacherController@index');
+// we have to add shwo($id) to add encypted id on slugs with route below:
+//Route::get('teacher/dashboard/{id}','TeacherController@show');
+
+//To show the profile of teacher:
+Route::get('dashboard/1/profile','TeacherController@show_profile');
+
+//To add the deatails of the teacher:
+Route::get('dashboard/1/add_profile','TeacherController@create');
+Route::post('teacher/add_profile','TeacherController@store');
+
