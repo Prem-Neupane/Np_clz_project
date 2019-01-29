@@ -13,5 +13,9 @@ class SubMenu extends Model
     public function menu(){
         return $this->belongsTO('App\Menu');
     }
+
+    public function content(){
+    	return $this->hasMany('App\tableofcontents');
+    }
    
 }
