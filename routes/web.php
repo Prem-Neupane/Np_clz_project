@@ -106,3 +106,4 @@ Route::get('dashboard/1/profile','TeacherController@show_profile');
 Route::get('dashboard/1/add_profile','TeacherController@create');
 Route::post('teacher/add_profile','TeacherController@store');
 
+

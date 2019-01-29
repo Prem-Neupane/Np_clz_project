@@ -1,5 +1,4 @@
 @extends('layouts.app')
-{{-- @extends('Admin/adminLayout/admin_design') --}}
     @section('content')
         @if(session('success'))
             <div class="alert alert-success" role="alert">
@@ -20,7 +19,8 @@
                             <img src="/storage/image/{{$teacher->image}}" alt="{{$teacher->first_name}} {{$teacher->last_name}}"/>
                             <div class="file btn btn-lg btn-primary">
                                 Change Photo
-                                <input type="file" name="file"/>
+                                {{-- <input type='file' onchange="readURL('/storage/image/');" />
+                                <img id="blah" src="/storage/image/{{$teacher->image}}" alt="{{$teacher->first_name}} {{$teacher->last_name}}" /> --}}
                             </div>
                         </div>
                     </div>
