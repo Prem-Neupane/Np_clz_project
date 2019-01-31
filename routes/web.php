@@ -92,7 +92,6 @@ Route::patch('/submenu/update/{id}',[
     'uses' => 'SubmenuController@update',
     'as'  => 'submenu.update'
 ]);
-
 //view list of collge 
 Route::get('/college_info/view','CollegeInfoController@index');
 
@@ -111,3 +110,42 @@ Route::patch('/college_info/update/{id}',[
     'uses' => 'CollegeInfoController@update',
     'as'  => 'collegeinfo.update'
 ]);
+//table of contents 
+
+//form to create tabel_content
+Route::get('/tablecontent/create','tableofcontentcontroller@create');
+
+// TO STORE IN DATABASES 
+Route::post('/tablecontent/store',[
+        'uses'=>'tableofcontentcontroller@store',
+        'as'=>'tablecontents.store'
+    ]);
+//to view tablecontent
+Route::get('/tablecontent/view','tableofcontentcontroller@index');
+
+//to update table content
+Route::get('/tablecontent/{id}/edit','tableofcontentcontroller@edit');
+
+Route::patch('/tablecontent/update/{id}',[
+    'uses'=>'tableofcontentcontroller@update',
+    'as'=>'tablecontents.update'
+]);
+
+//to delete the row of tablecontent
+Route::get('tablecontent/delete/{id}','tableofcontentcontroller@destroy');
+
+//to change status 
+Route::get('/content/toogle/{id}','tableofcontentcontroller@toogle');
+//Teachers Profile  part:
+// Route::resource('teachers','TeacherController');
+// Route::get('view/teachers_list','TeacherController@index');
+// we have to add shwo($id) to add encypted id on slugs with route below:
+//Route::get('teacher/dashboard/{id}','TeacherController@show');
+
+//To show the profile of teacher:
+Route::get('dashboard/1/profile','TeacherController@show_profile');
+
+//To add the deatails of the teacher:
+Route::get('dashboard/1/add_profile','TeacherController@create');
+Route::post('teacher/add_profile','TeacherController@store');
+
