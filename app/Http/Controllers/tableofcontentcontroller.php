@@ -17,12 +17,12 @@ class tableofcontentcontroller extends Controller
       public function index()
     {
     	if (Session::has('adminsession')) {
-    		# code...	
+    		# code...
               $tablecontent=TableContent::all();
-    		 
+
             // $content = DB::table('menus')
             //         ->join('contents','menus.id','=','contents.menu_id')
-                    
+
             //         ->select('menus.title as menutitle','contents.*')
             //         ->get();
 
@@ -43,7 +43,7 @@ class tableofcontentcontroller extends Controller
 
     public function store(Request $request)
     {
-    	if (Session::has('adminsession')) {   
+    	if (Session::has('adminsession')) {
     		# code...
             // dd($request);
     		$this->validate($request,[
@@ -53,15 +53,15 @@ class tableofcontentcontroller extends Controller
                 'parent_menu_id'=>'required',
                 'p_submenu_id'=> 'required'
             ]);
-    	
+
     		$tablecontent = new TableContent;
     		$tablecontent->title = $request->input('title');
     		$tablecontent->description = $request->input('description');
     		$tablecontent->status = $request->input('status');
-    		if($request->input('parent_menu_id')!=0) 
+    		if($request->input('parent_menu_id')!=0)
     			# code...
     			 $tablecontent->menu_id = $request->input('parent_menu_id');
-    	
+
 
            if($request->input('p_submenu_id')!= 0)
                 $tablecontent->submenu_id = $request->input('p_submenu_id');
@@ -99,7 +99,7 @@ class tableofcontentcontroller extends Controller
                 'description'=>'required',
                 'status'=>'required'
             ]);
-    	
+
 
     	$tablecontent = TableContent::find($id);
     	$tablecontent->title = $request->input(['title']);
