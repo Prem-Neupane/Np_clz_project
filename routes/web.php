@@ -92,3 +92,22 @@ Route::patch('/submenu/update/{id}',[
     'uses' => 'SubmenuController@update',
     'as'  => 'submenu.update'
 ]);
+
+//view list of collge 
+Route::get('/college_info/view','CollegeInfoController@index');
+
+//form to create college_info
+Route::get('/college_info/create','CollegeInfoController@create');
+
+Route::post('/college_info/store',[
+        'uses'=>'CollegeInfoController@store',
+        'as'=>'collegeinfo.store'
+    ]);
+
+//update college info
+Route::get('/college_info/{id}/edit','CollegeInfoController@edit');
+
+Route::patch('/college_info/update/{id}',[
+    'uses' => 'CollegeInfoController@update',
+    'as'  => 'collegeinfo.update'
+]);
