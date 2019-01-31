@@ -92,7 +92,24 @@ Route::patch('/submenu/update/{id}',[
     'uses' => 'SubmenuController@update',
     'as'  => 'submenu.update'
 ]);
+//view list of collge 
+Route::get('/college_info/view','CollegeInfoController@index');
 
+//form to create college_info
+Route::get('/college_info/create','CollegeInfoController@create');
+
+Route::post('/college_info/store',[
+        'uses'=>'CollegeInfoController@store',
+        'as'=>'collegeinfo.store'
+    ]);
+
+//update college info
+Route::get('/college_info/{id}/edit','CollegeInfoController@edit');
+
+Route::patch('/college_info/update/{id}',[
+    'uses' => 'CollegeInfoController@update',
+    'as'  => 'collegeinfo.update'
+]);
 //table of contents 
 
 //form to create tabel_content
@@ -131,3 +148,4 @@ Route::get('dashboard/1/profile','TeacherController@show_profile');
 //To add the deatails of the teacher:
 Route::get('dashboard/1/add_profile','TeacherController@create');
 Route::post('teacher/add_profile','TeacherController@store');
+
