@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Teacher;
 use App\Menu;
 
 class DashboardController extends Controller
@@ -28,8 +30,15 @@ class DashboardController extends Controller
     public function index()
     {
         
-        return view('dashboard')
-                            ->with('menus',Menu::where('status','=',1)->get());
+        $identity = Auth::user()->identity;
+        $id = Auth::user()->id;
+
+        if ( Teacher::find(Auth::user()->id) ){
+            return view('dashboard')
+            ->with('menus',Menu::where('status','=',1)->get());
+        }else{
+                return redirect('/'.$identity.'/add_profile/'.$id)->with('Success','Your Profile Is Not Fully Ready. Please Submit Your Full Information');
+        }
 
     }
 }

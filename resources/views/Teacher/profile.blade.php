@@ -16,15 +16,24 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-img">
-                            <img src="/storage/image/{{$teacher->image}}" alt="{{$teacher->first_name}} {{$teacher->last_name}}"/>
-                            <div class="file btn btn-lg btn-primary">
-                                Change Photo
-                                {{-- <input type='file' onchange="readURL('/storage/image/');" />
-                                <img id="blah" src="/storage/image/{{$teacher->image}}" alt="{{$teacher->first_name}} {{$teacher->last_name}}" /> --}}
-                            </div>
+                            @if($teacher)
+                                <img src="/storage/image/{{$teacher->image}}" alt="{{$teacher->first_name}} {{$teacher->last_name}}"/>
+                                <div class="file btn btn-lg btn-primary">
+                                        Change Photo
+                                        <input id="imageUpload" type="file" name="file"/>
+                                </div>
+                            @else
+                            <img id="profile-img" src="/storage/image/male_teacher_image.png" alt="Nepathya-Teacher"/>
+                                <div class="file btn btn-lg btn-primary">
+                                    Change Photo
+                                    {{-- <input type="file" name="file"/> --}}
+                                    <input id="imageUpload" type="file" name="profile_photo" placeholder="Photo" required="" capture>
+                                </div>
+                            @endif
                         </div>
                     </div>
-                    <div class="col-md-6">
+                 
+                <div class="col-md-6">
                         <div class="profile-head">
                                     <h3>
                                         {{Auth::user()->first_name}} {{Auth::user()->last_name}}
@@ -94,7 +103,11 @@
                                                 <label>Phone</label>
                                             </div>
                                             <div class="col-md-6">
-                                            <p>{{$teacher->phone}}</p>
+                                            @if($teacher)
+                                                <p>{{$teacher->phone}}</p>
+                                            @else
+                                                <p>You Have Not added Your details</p>
+                                            @endif
                                             </div>
                                         </div>
                                         <div class="row">
@@ -140,7 +153,11 @@
                                         <label>Qualification:</label>
                                     </div>
                                     <div class=" form-group col-md-6">
-                                        <p>{!! $teacher->qualification !!}</p>
+                                        @if($teacher)
+                                            <p>{!! $teacher->qualification !!}</p>
+                                        @else
+                                            <p>You Have Not added Your Details</p>
+                                        @endif
                                     </div>
                                 </div>
 
@@ -149,7 +166,11 @@
                                         <label>Description:</label>
                                     </div>
                                     <div class=" form-group col-md-6">
-                                        <p>{!! $teacher->description !!}</p>
+                                        @if($teacher)
+                                            <p>{!! $teacher->description !!}</p>
+                                        @else
+                                            <p>You Have Not added Your Details</p>
+                                        @endif
                                     </div>
                                 </div>
 
@@ -158,7 +179,11 @@
                                         <label>Facebook Profile Link:</label>
                                     </div>
                                     <div class=" form-group col-md-6">
-                                        <p>{!! $teacher->facebook !!}</p>
+                                        @if($teacher)
+                                            <p>{!! $teacher->facebook !!}</p>
+                                        @else
+                                            <p>You Have Not added Your Details</p>
+                                        @endif
                                     </div>
                                 </div>
 
@@ -167,7 +192,11 @@
                                         <label>Linked-In Profile Link :</label>
                                     </div>
                                     <div class=" form-group col-md-6">
-                                        <p>{!! $teacher->linkedin !!}</p>
+                                        @if($teacher)
+                                            <p>{!! $teacher->linkedin !!}</p>
+                                        @else
+                                            <p>You Have Not added Your Details</p>
+                                        @endif
                                     </div>
                                 </div>
 
@@ -176,14 +205,22 @@
                                         <label>Twitter profile Link:</label>
                                     </div>
                                     <div class=" form-group col-md-6">
-                                        <p>{!! $teacher->twitter !!}</p>
+                                        @if($teacher)
+                                            <p>{!! $teacher->twitter !!}</p>
+                                        @else
+                                            <p>You Have Not added Your Details</p>
+                                        @endif
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-md-12">
                                         <label>Your Bio</label><br/>
-                                        <p>Your detail description</p>
+                                        @if($teacher)
+                                            <p>{!! $teacher->description !!}</p>
+                                        @else
+                                            <p>You Have Not added Your Details</p>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

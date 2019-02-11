@@ -23,7 +23,7 @@ class TeacherController extends Controller
     public function index()
     {
 
-        // if(Auth::user()->identity=='teacher'){
+        // if(Auth::user()->identity=='1'){
             // $Tid = Teacher::find(auth()->id);
             // $teacher = Auth::user();
             
@@ -42,7 +42,7 @@ class TeacherController extends Controller
     public function create(Request $request)
     {
 
-        if(Auth::user()->identity=='teacher'){
+        if(Auth::user()->identity=='1'){
 
             if($request->isMethod('get')){
                 $teacher = Auth::user();
@@ -63,7 +63,7 @@ class TeacherController extends Controller
      */
     public function store(Request $request){
    
-    // if(Auth::user()->idnetity=='teacher'){
+    // if(Auth::user()->idnetity=='1'){
         
         //   if($request->isMethod('post')){
             // if(dd($request)){
@@ -96,7 +96,7 @@ class TeacherController extends Controller
             $teacher->linkedin =$request->input('linkedin');
             $teacher->twitter =$request->input('twitter');
             $teacher->save();
-            return redirect('/dashboard/1/profile')->with('success','Your Profile Updated Successfully !!!');
+            return redirect('/dashboard/1/profile/'.$id)->with('success','Your Profile Updated Successfully !!!');
             // return redirect('/teacher/dashboard/{id}')->with("id",$id);
             // $imageName = time().'.'.request()->image->getClientOriginalExtension();
 
@@ -113,7 +113,7 @@ class TeacherController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show_profile()
+    public function show_profile($id)
     {    
         $id = Auth::user()->id;
         $user = User::all();
@@ -128,9 +128,15 @@ class TeacherController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit_profile($id)
     {
-        //
+     if(Auth::user()->identity == '1'){
+            $menus = Menu::all();
+            $teacher =Teacher::find($id);
+            return view('Teacher/update_profile')->with('menus',$menus)->with('teacher',$teacher);                
+        }else{
+            return redirect('/login')->with('flash_msg_err','Aunthitaction Problem!!! Please Log-in with teachers authority ');
+        }
     }
 
     /**
@@ -142,7 +148,69 @@ class TeacherController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if(Auth::user()->identity == '1')
+        {
+         
+            if($request->isMethod('post'))
+            {
+                    $this->validate($request,[
+                        //Teacher as user:
+                        'first_name' => 'required|string|max:25',
+                        'last_name' => 'required|string|max:25',
+                        'username' => 'required|string|max:25|unique:users',
+                        'email' => 'required|string|email|max:50|  unique:users',
+                        'gender' => 'required',               
+                        'roles' => 'required',
+    
+                        //Only for teachers extra details:
+                        'address' => 'string|max:255',
+                        'phone'   => 'string|min:15|max:15',
+                        'qualification' => 'string|max:1000',
+                        'description'  =>'string|max:1000',
+                        'facebook'  =>'string|max:50',
+                        'linkedin'  =>'string|max:50',
+                        'twitter'  =>'string|max:50',
+                        'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                    ]);
+    
+                //Teacher as user:
+                $user= User::find($id);
+                $user->id = $id;
+                $user->first_name = $request->input('first_name');
+                $user->last_name = $request->input('last_name');
+                $user->username = $request->input('username');
+                $user->email = $request->input('email');                                    
+                $user->gender = $request->input('gender');                
+                $user->identity = $request->input('roles');
+                $user->save();
+    
+                $teacher = Teacher::find($id);
+                // if we have to send teacher's id 
+                $id= Auth::user()->id;
+                $teacher->id=$id;
+                $teacher->phone = $request->input('phone');
+                $teacher->address= $request->input('address');
+                $teacher->qualification = $request->input('qualification');
+                $teacher->description = $request->input('description');
+                $fileName = pathinfo($request->file('image')->getClientOriginalName(),PATHINFO_FILENAME);
+                $image_name = $fileName.'_'.time().'.'.request()->image->getClientOriginalExtension();
+                $teacher->image = $image_name;
+                $path= $request->file('image')->storeAs('public/image',$image_name);
+                $teacher->facebook =$request->input('facebook');
+                $teacher->linkedin =$request->input('linkedin');
+                $teacher->twitter =$request->input('twitter');
+                $teacher->save();
+                return redirect('/dashboard/1/profile/'.$id)->with('success','Your Profile Updated Successfully !!!');
+                // return redirect('/teacher/dashboard/{id}')->with("id",$id);
+                // $imageName = time().'.'.request()->image->getClientOriginalExtension();
+    
+         
+            }
+        }
+        else
+        {
+            return redirect('/login')->with('flash_msg_err','Aunthitaction Problem!!! Please Log-in with teachers authority ');
+        }
     }
 
     /**

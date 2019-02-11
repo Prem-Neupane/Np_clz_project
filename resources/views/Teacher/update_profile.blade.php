@@ -29,9 +29,9 @@
                             
                 {{-- Route session --}}
                 {{      @csrf_field()   }}
-{!! Form::open(['action'=>'TeacherController@store','Method'=>'POST','enctype'=>'multipart/form-data']) !!}
+{!! Form::open(['action'=>'TeacherController@update','Method'=>'POST','enctype'=>'multipart/form-data']) !!}
 <div class="row">
-        <div class="form-group col-md-6">
+    <div class="form-group col-md-6">
         {{Form::label('first_name','Your First Name')}}
         {{Form::text('first_name',$teacher->first_name,['class'=>'form-control','placeholder'=>'Your First Name'])}}
     </div>
@@ -42,15 +42,15 @@
 </div>
 
 <div class="row">
-        <div class="form-group col-md-6">
+    <div class="form-group col-md-6">
         {{Form::label('username','User Name')}}
         {{Form::text('username',$teacher->username,['class'=>'form-control col-md-6','placeholder'=>'User Name'])}}
-        </div>
+    </div>
 
-         <div class="form-group col-md-6">
+    <div class="form-group col-md-6">
         {{Form::label('role','User Role')}}
         {{Form::text('role',$teacher->identity,['class'=>'form-control col-md-6','placeholder'=>'User Role In this Institution'])}}
-        </div>
+    </div>
 </div>
 <div class="row">
        <div class="col-md-6">
@@ -129,5 +129,5 @@
         </div>
         
      {{Form::submit('Submit',['class'=>'btn btn-primary btn-lg','style'=>'width:20%'])}}
-    {!! Form::close() !!}
+{!! Form::close() !!}
 @endsection
