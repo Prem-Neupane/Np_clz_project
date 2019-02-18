@@ -58,8 +58,8 @@
                 {{-- <label class="col-md-2">Gender:</label> --}}
                 <div class="col-md-6">
                         @if($teacher->gender==1)
-                <input type="radio" name="gender" value="{{$teacher->male}}" checked> Male<br>
-                <input type="radio" name="gender" value="{{$teacher->female}}"> Female<br>              
+                <input type="radio" name="gender" value=1 checked> Male<br>
+                <input type="radio" name="gender" value=0> Female<br>              
                 @else
                 <input type="radio" name="gender" value=0 > Male<br>
                 <input type="radio" name="gender" value=1 checked> Female<br>

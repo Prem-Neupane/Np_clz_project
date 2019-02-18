@@ -37,7 +37,7 @@ class DashboardController extends Controller
             return view('dashboard')
             ->with('menus',Menu::where('status','=',1)->get());
         }else{
-                return redirect('/'.$identity.'/add_profile/'.$id)->with('Success','Your Profile Is Not Fully Ready. Please Submit Your Full Information');
+                return redirect('/dashboard/'.$identity.'/add_profile')->with('Success','Your Profile Is Not Fully Ready. Please Submit Your Full Information');
         }
 
     }

@@ -65,7 +65,7 @@
                         <a class="dropdown-item" href="/dashboard/{{ Auth::user()->identity }}/add_profile">Add Profile
                         </a>
 
-                        <a class="dropdown-item" href="/dashboard/{{ Auth::user()->identity }}/profile/{{Auth::user()->id}}/edit">Update Profile
+                      <a class="dropdown-item" href="/dashboard/{{ Auth::user()->identity }}/profile/{id}/edit">Update Profile
                         </a>
 
 

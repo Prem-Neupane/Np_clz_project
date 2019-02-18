@@ -63,9 +63,9 @@ class TeacherController extends Controller
      */
     public function store(Request $request){
    
-    // if(Auth::user()->idnetity=='1'){
+    if(Auth::user()->idnetity=='1'){
         
-        //   if($request->isMethod('post')){
+          if($request->isMethod('post')){
             // if(dd($request)){
 
                  $this->validate($request,[
@@ -97,14 +97,11 @@ class TeacherController extends Controller
             $teacher->twitter =$request->input('twitter');
             $teacher->save();
             return redirect('/dashboard/1/profile/'.$id)->with('success','Your Profile Updated Successfully !!!');
-            // return redirect('/teacher/dashboard/{id}')->with("id",$id);
-            // $imageName = time().'.'.request()->image->getClientOriginalExtension();
 
-     
-    // }        
-        // }else{
-        //         return redirect('/admin')->with('flash_msg_err','You must Log-In First to access');
-        // }
+         }        
+        }else{
+                return redirect('/admin')->with('flash_msg_err','You must Log-In First to access');
+        }
     }
 
     /**
@@ -128,15 +125,26 @@ class TeacherController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit_profile($id)
+    public function edit_profile(Request $request, $id)
     {
-     if(Auth::user()->identity == '1'){
-            $menus = Menu::all();
-            $teacher =Teacher::find($id);
-            return view('Teacher/update_profile')->with('menus',$menus)->with('teacher',$teacher);                
-        }else{
-            return redirect('/login')->with('flash_msg_err','Aunthitaction Problem!!! Please Log-in with teachers authority ');
+        if($request->isMethod('get'))
+        {   
+            if(Auth::user()->identity == '1')
+            {
+                // dd($request);
+                $id = Auth::user()->id;
+                $menus = Menu::all();
+                $teacher =Teacher::find($id);
+                // $user = User::all();
+                return view('Teacher/update_profile')->with('menus',$menus)->with('teacher',$teacher)->with('id', $id); 
+                // return view('Teacher/update_profile');                
+            }
+             else
+                {
+                    return redirect('/login')->with('flash_msg_err','Aunthitaction Problem!!! Please Log-in with teachers authority ');
+                }
         }
+
     }
 
     /**
@@ -146,21 +154,21 @@ class TeacherController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update_profile(Request $request, $id)
     {
         if(Auth::user()->identity == '1')
         {
          
-            if($request->isMethod('post'))
+            if($request->isMethod('patch'))
             {
                     $this->validate($request,[
                         //Teacher as user:
                         'first_name' => 'required|string|max:25',
                         'last_name' => 'required|string|max:25',
                         'username' => 'required|string|max:25|unique:users',
-                        'email' => 'required|string|email|max:50|  unique:users',
+                        'email' => 'required|string|email|max:50|unique:users',
                         'gender' => 'required',               
-                        'roles' => 'required',
+                        'role' => 'required',
     
                         //Only for teachers extra details:
                         'address' => 'string|max:255',
@@ -171,18 +179,19 @@ class TeacherController extends Controller
                         'linkedin'  =>'string|max:50',
                         'twitter'  =>'string|max:50',
                         'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+
                     ]);
     
                 //Teacher as user:
-                $user= User::find($id);
-                $user->id = $id;
-                $user->first_name = $request->input('first_name');
-                $user->last_name = $request->input('last_name');
-                $user->username = $request->input('username');
-                $user->email = $request->input('email');                                    
-                $user->gender = $request->input('gender');                
-                $user->identity = $request->input('roles');
-                $user->save();
+                    $user= User::find($id);
+                    $user->id = $id;
+                    $user->first_name = $request->input('first_name');
+                    $user->last_name = $request->input('last_name');
+                    $user->username = $request->input('username');
+                    $user->email = $request->input('email');                                    
+                    $user->gender = $request->input('gender');                
+                    $user->identity = $request->input('role');
+                    $user->update();
     
                 $teacher = Teacher::find($id);
                 // if we have to send teacher's id 
@@ -199,19 +208,15 @@ class TeacherController extends Controller
                 $teacher->facebook =$request->input('facebook');
                 $teacher->linkedin =$request->input('linkedin');
                 $teacher->twitter =$request->input('twitter');
-                $teacher->save();
-                return redirect('/dashboard/1/profile/'.$id)->with('success','Your Profile Updated Successfully !!!');
-                // return redirect('/teacher/dashboard/{id}')->with("id",$id);
-                // $imageName = time().'.'.request()->image->getClientOriginalExtension();
-    
-         
-            }
+                $teacher->update();
+                return redirect('/dashboard/1/profile/'.$id)->with('success','Your Profile Updated Successfully !!!');        
         }
         else
         {
             return redirect('/login')->with('flash_msg_err','Aunthitaction Problem!!! Please Log-in with teachers authority ');
         }
     }
+}
 
     /**
      * Remove the specified resource from storage.
