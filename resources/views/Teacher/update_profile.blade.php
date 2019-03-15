@@ -35,20 +35,22 @@
          ?>
 
 
-        <form role="form" method="post" action = 
-        "{{ route('profile.update' , [ 'id' => $teacher ] ) }}" >
-        {{ method_field('patch') }}
-        {{      @csrf_field()   }}
-
-        <div class="row">
+        {{-- <form role="form" method="post" enctype="multipart/form-data" action = "{{ route('profile.update' , [ 'id' => $teacher ] ) }}" >
+         {{ method_field('patch') }}
+         {{     @csrf_field()     }} --}}
+{!! Form::open(['action'=>['TeacherController@update_profile', 'id'=> $id ],'Method'=>'POST','enctype'=>'multipart/form-data']) !!}
+  {{ method_field('patch') }}
+<div class="row">
     <div class="form-group col-md-6">
         {{Form::label('first_name','Your First Name')}}
         {{Form::text('first_name',$user->first_name,['class'=>'form-control','placeholder'=>'Your First Name'])}}
     </div>
+    
     <div class="form-group col-md-6">
         {{Form::label('name','Your Last Name')}}
         {{Form::text('last_name',$user->last_name,['class'=>'form-control','placeholder'=>'Your First Name'])}}
     </div>
+
 </div>
 
 <div class="row">
@@ -105,26 +107,36 @@
          <div class="row">
                 <div class="form-group col-md-6">
                         {{Form::label('facebook','Link Up With Your Facebook Profile')}}
-                        {{Form::text('facebook',$teacher->facbook ,['class'=>'form-control col-md-6','placeholder'=>'eg: www.facebook.com/username'])}}
+                        {{Form::text('facebook', $teacher->facebook ,['class'=>'form-control col-md-6','placeholder'=>'eg: www.facebook.com/username'])}}
                 </div>
 
                 <div class="form-group col-md-6">
                         {{Form::label('linkedin','Link Up With Your Linked-In Profile')}}
                         {{Form::text('linkedin',$teacher->linkedin,['class'=>'form-control col-md-6','placeholder'=>'eg: www.linkedin.com/username'])}}
-        </div>
+                </div>
+         </div>
 
          <div class="row">
                 <div class="form-group col-md-6">
                   {{Form::label('twitter','Link Up With Your Twitter Profile')}}
                   {{Form::text('twitter',$teacher->twitter ,['class'=>'form-control col-md-6','placeholder'=>'eg: www.twitter.com/username'])}}
                 </div>
+
+                <div class="form-group col-md-6">
+                        <h5><b>{{form::label('image','Profile Image')}}</b></h5>
+                        @if($teacher)
+                                <img src="/storage/image/{{$teacher->image}}" id="profile-img-tag" alt="{{$teacher->first_name}} {{$teacher->last_name}}" style="width:375px;height:250px;" />
+                                {{form::file('image',['id'=>'image','type'=>'file','class'=>'custom-file-control'] )}}
+                        @else
+                                <img id="profile-img" src="/storage/image/male_teacher_image.png" alt="Nepathya-Teacher" style="width:375px;height:250px;" />
+                                {{form::file('image',['id'=>'image','type'=>'file','class'=>'custom-file-control'] )}}
+                        @endif
+                </div>
         </div>
 
-        <div class="column">
-        {{form::label('image','User Image')}}
-        {{form::file('image',['id'=>'image','type'=>'file','class'=>'custom-file-control'] )}}
-        </div>
-      <div class="row">
+       
+
+        <div class="row">
                 <div class="form-group">
                         {{Form::label('qualification','Qualification Details')}}
                         {{Form::textarea('qualification',$teacher->qualification ,['id'=>'article-ckeditor1','class'=>'form-control col-md-6','placeholder'=>'Your Address here'])}}
@@ -140,4 +152,6 @@
         
      {{Form::submit('Submit',['class'=>'btn btn-primary btn-lg','style'=>'width:20%'])}}
 {!! Form::close() !!}
+
+
 @endsection

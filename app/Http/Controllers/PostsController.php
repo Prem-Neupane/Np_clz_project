@@ -19,5 +19,11 @@ class PostsController extends Controller
     	return view('Pages.homes')    						
                             ->with('menus',Menu::where('status','=',1)->get());                            
     }
+
+    // public function show_content($slug,$slug2 = ""){
+    //     if($slug == "myhomes")
+    // 	return view('Pages.homes')    						
+    //                         ->with('menus',Menu::where('status','=',1)->get());                            
+    // }
   
 }

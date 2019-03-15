@@ -111,8 +111,8 @@
         </div>
 
         <div class="column">
-        {{form::label('image','User Image')}}
-        {{form::file('image',['id'=>'photo','type'=>'file','class'=>'custom-file-control'] )}}
+                {{form::label('image','User Image')}}
+                {{form::file('image',['id'=>'image','type'=>'file','class'=>'custom-file-control'] )}}
         </div>
       <div class="row">
                 <div class="form-group">

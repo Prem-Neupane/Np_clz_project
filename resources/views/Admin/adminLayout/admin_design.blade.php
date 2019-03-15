@@ -11,6 +11,8 @@
 <link href="{{ asset('css/backend_css/bootstrap-table.css') }}" rel="stylesheet">
 
 <script src="{{ asset('js/backend_js/lumino.glyphs.js') }}"></script>
+<script src="{{ asset('js/forntend_js/picture_onchange.js') }}"> </script>
+{{-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> --}}
 
 </head>
 
@@ -46,6 +48,8 @@
 		  if ($(window).width() <= 767) $('#sidebar-collapse').collapse('hide')
 		})
 	</script>
+
+	{{-- This scripts are used for ck-edtior used for quallification and full description:  --}}
 	<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
 	 	<script>
 			 CKEDITOR.replace( 'article-ckeditor1' );
@@ -54,7 +58,25 @@
  	<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
 	 	<script>
 			 CKEDITOR.replace( 'article-ckeditor2' );
-	 	</script>
+	  </script>
+		 
+		{{-- scripts used below are only for the onchange function to of image upload: --}}
+	<script type="text/javascript">
+			function readURL(input) {
+					if (input.files && input.files[0]) {
+							var reader = new FileReader();
+							
+							reader.onload = function (e) {
+									$('#profile-img-tag').attr('src', e.target.result);
+							}
+							reader.readAsDataURL(input.files[0]);
+					}
+			}
+			$("#image").change(function(){
+					readURL(this);
+			});
+	</script>
+	
 
 </body>
 

@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
   <div class="container">    
-        <a class="navbar-brand" href="{{ url('/') }}">NC</a>
+        <a class="navbar-brand" href="{{ url('/') }}">NEPATHYA COLLEGE </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -56,28 +56,21 @@
 
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
-                        <a class="dropdown-item" href="/dashboard"> Dashboard
-                        </a>
+                      <a class="dropdown-item" href="/dashboard"> Dashboard </a>
 
-                      <a class="dropdown-item" href="/dashboard/{{ Auth::user()->identity }}/profile/{{Auth::user()->id}}">My Profile
-                        </a>
+                      <a class="dropdown-item" href="/dashboard/{{ Auth::user()->identity }}/profile/{{Auth::user()->id}}">My Profile </a>
 
-                        <a class="dropdown-item" href="/dashboard/{{ Auth::user()->identity }}/add_profile">Add Profile
-                        </a>
+                      <a class="dropdown-item" href="/dashboard/{{ Auth::user()->identity }}/add_profile">Add Profile </a>
 
-                      <a class="dropdown-item" href="/dashboard/{{ Auth::user()->identity }}/profile/{id}/edit">Update Profile
-                        </a>
+                      <a class="dropdown-item" href="/dashboard/{{ Auth::user()->identity }}/profile/{id}/edit">Update Profile </a>
 
-
-                        <a class="dropdown-item" href="#"> Create Post
-                        </a>
-
-
-                        <a class="dropdown-item" href="{{ route('logout') }}"
+                      <a class="dropdown-item" href="#"> Create Post </a>
+                      
+                      <a class="dropdown-item" href="{{ route('logout') }}"
                            onclick="event.preventDefault();
                                          document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}
-                        </a>
+                      </a>
 
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf

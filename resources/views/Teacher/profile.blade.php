@@ -17,22 +17,32 @@
                     <div class="col-md-4">
                         <div class="profile-img">
                             @if($teacher)
-                                <img src="/storage/image/{{$teacher->image}}" alt="{{$teacher->first_name}} {{$teacher->last_name}}"/>
+                                <img id="profile-img-tag" src="/storage/image/{{$teacher->image}}" alt="{{$teacher->first_name}} {{$teacher->last_name}}" />
                                 <div class="file btn btn-lg btn-primary">
                                         Change Photo
-                                        <input id="imageUpload" type="file" name="file"/>
+                                        <input id="image" type="file" name="image"/>
                                 </div>
                             @else
-                            <img id="profile-img" src="/storage/image/male_teacher_image.png" alt="Nepathya-Teacher"/>
-                                <div class="file btn btn-lg btn-primary">
-                                    Change Photo
-                                    {{-- <input type="file" name="file"/> --}}
-                                    <input id="imageUpload" type="file" name="profile_photo" placeholder="Photo" required="" capture>
-                                </div>
+                              <img id="profile-img-tag" src="/storage/image/male_teacher_image.png" alt="Nepathya-Teacher" />
+                                    <div class="file btn btn-lg btn-primary">
+                                        Change Photo
+                                        {{-- <input type="file" name="file"/> --}}
+                                        <input id="image" type="file" name="profile_photo" placeholder="Photo" required="" capture>
+                                    </div>
                             @endif
+                            {{-- {!! Form::open(['action'=>['TeacherController@picture', 'id'=>Auth::user()->id ],'Method'=>'POST','enctype'=>'multipart/form-data']) !!}
+                                {{ method_field('patch') }} --}}
+                                {{-- <div class=" btn-primary btn">
+                                    Upload Picture
+                                </div> --}}
+                            {{-- {{Form::submit('Upload Picture',['class'=>'btn btn-primary btn-lg','style'=>'width:20%'])}}
+                            {!! Form::close() !!} --}}
                         </div>
+                        
                     </div>
-                 
+                
+            </form>
+          
                 <div class="col-md-6">
                         <div class="profile-head">
                                     <h3>
@@ -52,9 +62,12 @@
                             </ul>
                         </div>
                     </div>
+
+
                     <div class="col-md-2">
-                        <input type="submit" class="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
+                    <a  href="/dashboard/{{ Auth::user()->identity }}/profile/{{Auth::user()->id}}/edit" class=" btn-primary btn" > Edit Profile </a>
                     </div>
+
                 </div>
                 <div class="row">
                     <div class="col-md-4">

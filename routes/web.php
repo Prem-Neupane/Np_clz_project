@@ -2,6 +2,8 @@
 
 //simple postscontrollers...
 Route::get('/homes','PostsController@homes');
+// Route::get('/{slug}',"PostsController@show_content");
+// Route::get('/{slug}/{slug2}',"PostsController@show_content");
 Route::get('/','PostsController@homes');
 
 //if login success for normal users...
@@ -140,6 +142,8 @@ Route::get('/content/toogle/{id}','tableofcontentcontroller@toogle');
 //Teachers Profile  part:
 //To show the profile of teacher:
 // Route::resource('teacher','TeacherController');
+
+Route::get('teacher/view','TeacherController@idnex');
 Route::get('dashboard/1/profile/{id}','TeacherController@show_profile');
 
 //To add the deatails of the teacher:

@@ -19,7 +19,7 @@ class TeacherController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    
+
     public function index()
     {
 
@@ -63,11 +63,11 @@ class TeacherController extends Controller
      */
     public function store(Request $request){
    
-    if(Auth::user()->idnetity=='1'){
-        
-          if($request->isMethod('post')){
-            // if(dd($request)){
-
+    if(Auth::user()->identity == '1')
+    {
+            if($request->isMethod('post'))
+            {
+                // dd($request);
                  $this->validate($request,[
                     'address' => 'string|max:255',
                     'phone'   => 'string|min:15|max:15',
@@ -76,31 +76,34 @@ class TeacherController extends Controller
                     'facebook'  =>'string|max:50',
                     'linkedin'  =>'string|max:50',
                     'twitter'  =>'string|max:50',
-                    'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                    'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                    
                 ]);
             
-            $teacher = new Teacher;
-            
-            // if we have to send teacher's id 
-            $id= Auth::user()->id;
-            $teacher->id=$id;
-            $teacher->phone = $request->input('phone');
-            $teacher->address= $request->input('address');
-            $teacher->qualification = $request->input('qualification');
-            $teacher->description = $request->input('description');
-            $fileName = pathinfo($request->file('image')->getClientOriginalName(),PATHINFO_FILENAME);
-            $image_name = $fileName.'_'.time().'.'.request()->image->getClientOriginalExtension();
-            $teacher->image = $image_name;
-            $path= $request->file('image')->storeAs('public/image',$image_name);
-            $teacher->facebook =$request->input('facebook');
-            $teacher->linkedin =$request->input('linkedin');
-            $teacher->twitter =$request->input('twitter');
-            $teacher->save();
-            return redirect('/dashboard/1/profile/'.$id)->with('success','Your Profile Updated Successfully !!!');
+                $teacher = new Teacher;
+                    
+                // if we have to send teacher's id 
+                $id= Auth::user()->id;
+                $teacher->id=$id;
 
-         }        
-        }else{
-                return redirect('/admin')->with('flash_msg_err','You must Log-In First to access');
+                $teacher->phone = $request->input('phone');
+                $teacher->address= $request->input('address');
+                $teacher->qualification = $request->input('qualification');
+                $teacher->description = $request->input('description');
+                
+                $fileName = pathinfo($request->file('image')->getClientOriginalName(),PATHINFO_FILENAME);
+                $image_name = $fileName.'_'.time().'.'.request()->image->getClientOriginalExtension();
+                $teacher->image = $image_name;
+
+                $path= $request->file('image')->storeAs('public/image',$image_name);
+                $teacher->facebook =$request->input('facebook');
+                $teacher->linkedin =$request->input('linkedin');
+                $teacher->twitter =$request->input('twitter');
+                $teacher->save();
+                return redirect('/dashboard/1/profile/'.$id)->with('success','Your Profile Updated Successfully !!!');       
+            }
+    }else{
+            return redirect('/logout')->with('flash_msg_err','You must Log-In First to access');
         }
     }
 
@@ -131,11 +134,9 @@ class TeacherController extends Controller
         {   
             if(Auth::user()->identity == '1')
             {
-                // dd($request);
                 $id = Auth::user()->id;
                 $menus = Menu::all();
                 $teacher =Teacher::find($id);
-                // $user = User::all();
                 return view('Teacher/update_profile')->with('menus',$menus)->with('teacher',$teacher)->with('id', $id); 
                 // return view('Teacher/update_profile');                
             }
@@ -161,6 +162,11 @@ class TeacherController extends Controller
          
             if($request->isMethod('patch'))
             {
+                // dd($request);
+               
+                $active_teacher=Teacher::find(Auth::user()->id);
+                if(  $this->validate($request,['username' => 'required|string|max:25|unique:users','email' => 'required|string|email|max:50|unique:users',]) )
+                {
                     $this->validate($request,[
                         //Teacher as user:
                         'first_name' => 'required|string|max:25',
@@ -178,8 +184,7 @@ class TeacherController extends Controller
                         'facebook'  =>'string|max:50',
                         'linkedin'  =>'string|max:50',
                         'twitter'  =>'string|max:50',
-                        'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-
+                        'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
                     ]);
     
                 //Teacher as user:
@@ -201,10 +206,14 @@ class TeacherController extends Controller
                 $teacher->address= $request->input('address');
                 $teacher->qualification = $request->input('qualification');
                 $teacher->description = $request->input('description');
+
+                
                 $fileName = pathinfo($request->file('image')->getClientOriginalName(),PATHINFO_FILENAME);
                 $image_name = $fileName.'_'.time().'.'.request()->image->getClientOriginalExtension();
                 $teacher->image = $image_name;
+
                 $path= $request->file('image')->storeAs('public/image',$image_name);
+
                 $teacher->facebook =$request->input('facebook');
                 $teacher->linkedin =$request->input('linkedin');
                 $teacher->twitter =$request->input('twitter');
@@ -218,6 +227,8 @@ class TeacherController extends Controller
     }
 }
 
+}
+
     /**
      * Remove the specified resource from storage.
      *
@@ -227,5 +238,20 @@ class TeacherController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    public function picture(Request $request, $id)
+    {
+        //
+        if(Auth::user()->identity == '1')
+        {
+            if($request->isMethod('post'))
+            {
+                    $this->validate($request,[
+
+                    ]);
+            }
+        }
     }
 }
