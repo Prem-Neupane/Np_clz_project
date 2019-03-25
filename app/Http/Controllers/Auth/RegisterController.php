@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\SubMenu;
+use App\Menu;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -40,6 +42,15 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+    public function showRegistrationForm()
+    {        
+
+        return view('auth.register')
+                            ->with('title',"Nepathya")
+                            ->with('menus',Menu::where('status','=',1)->get())
+                            ->with('submenus',SubMenu::where('status','=',1)->get());;
+    }
+
     /**
      * Get a validator for an incoming registration request.
      *
@@ -54,6 +65,7 @@ class RegisterController extends Controller
             'username' => 'required|string|max:255|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            'roles'   => 'required',
         ]);
     }
 
@@ -71,6 +83,7 @@ class RegisterController extends Controller
             'username'   => $data['username'],
             'email'      => $data['email'],            
             'password'   => Hash::make($data['password']),
+            'identity'   => $data['roles'],
         ]);
     }
 }

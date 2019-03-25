@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\SubMenu;
+use App\Menu;
 
 class LoginController extends Controller
 {
@@ -36,6 +38,15 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    
+    public function showLoginForm(){ 
+
+            return view('auth.login')
+                            ->with('title',"Nepathya")
+                            ->with('menus',Menu::where('status','=',1)->get())
+                            ->with('submenus',SubMenu::where('status','=',1)->get());;
     }
 
     /**

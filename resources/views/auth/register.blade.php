@@ -67,6 +67,26 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <label for="gender" class="col-md-4 col-form-label text-md-right">Gender</label>                                                        
+                            <div class="col-md-6">
+
+                                <div class="radio">                                    
+                                    <label>
+                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="1" checked>Male
+                                    </label>    
+                                </div>
+                                <div class="radio">                                    
+                                    <label><input type="radio" name="optionsRadios" id="optionsRadios1" value="0">Female
+                                    </label>    
+                                </div>                    
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            
+                        </div>
+
 
                         <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
@@ -89,6 +109,14 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
+
+                        <div class="form-group for">
+                                <label for="roles" class="col-md-4 col-form-label text-md-right">Roles</label>
+                                <select class="col-md-4 col-form-label text-md-right" name = 'roles'>
+                                    <option value="2"> Student </option>
+                                    <option value="1"> Teacher </option>                                            
+                                </select>                                   
+                            </div>
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
